@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ronald Repolona</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  :root{
+    --bg:#1a1a1e;--bg2:#222228;--bg3:#2a2a32;
+    --text:#d4d0cc;--muted:#7a7870;
+    --rose:#d4a5a5;--sage:#a5bfb0;--lav:#b8afc8;--gray:#8a8a90;
+    --border:#33333a;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+
+  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(26,26,30,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
+  .nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose);letter-spacing:1px;text-decoration:none}
+  .nav-links{display:flex;gap:1.6rem;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;transition:color .3s}
+  .nav-links a:hover{color:var(--text)}
+
+  section{max-width:920px;margin:0 auto;padding:100px 2rem 60px}
+
+  /* HERO */
+  #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden}
+  #hero::before{content:'';position:absolute;top:-10%;right:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(180,160,180,0.07) 0%,transparent 65%);pointer-events:none}
+  .hero-inner{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;width:100%}
+  .hero-label{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem}
+  .hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.1;color:#e8e4e0;margin-bottom:.5rem}
+  .hero-title{font-size:.92rem;color:var(--lav);font-weight:300;margin-bottom:1.4rem;letter-spacing:.5px}
+  .hero-desc{max-width:460px;color:var(--muted);font-size:.88rem;line-height:1.85;margin-bottom:2.2rem}
+  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+  .btn{padding:.62rem 1.4rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
+  .btn-outline{border:1px solid var(--rose);color:var(--rose);background:transparent}
+  .btn-outline:hover{background:var(--rose);color:var(--bg)}
+  .btn-ghost{border:1px solid var(--border);color:var(--muted);background:transparent}
+  .btn-ghost:hover{border-color:var(--gray);color:var(--text)}
+  .hero-photo-wrap{flex-shrink:0}
+  .hero-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;border:2px solid var(--border);filter:grayscale(20%);box-shadow:0 0 40px rgba(180,160,180,0.12)}
+
+  /* SECTION HEADERS */
+  .section-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:.6rem}
+  .section-title{font-family:'Playfair Display',serif;font-size:2rem;color:#e8e4e0;margin-bottom:2.5rem;padding-bottom:1rem;position:relative}
+  .section-title::after{content:'';position:absolute;bottom:0;left:0;width:36px;height:1px;background:var(--rose)}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  .about-bio p{margin-bottom:1rem;font-size:.9rem;color:var(--text);line-height:1.9}
+  .interest-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:.8rem;transition:border-color .3s}
+  .interest-card:hover{border-color:var(--lav)}
+  .interest-icon{font-size:1.3rem;margin-bottom:.3rem}
+  .interest-title{font-size:.8rem;font-weight:600;color:var(--lav);letter-spacing:.5px;margin-bottom:.2rem}
+  .interest-desc{font-size:.78rem;color:var(--muted)}
+
+  /* TIMELINE */
+  .timeline{position:relative;padding-left:1.5rem}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
+  .tl-item{position:relative;margin-bottom:2.5rem}
+  .tl-dot{position:absolute;left:-1.88rem;top:7px;width:10px;height:10px;border-radius:50%;border:2px solid var(--rose);background:var(--bg)}
+  .tl-company{font-size:.98rem;font-weight:600;color:#e8e4e0;margin-bottom:.15rem}
+  .tl-period{font-size:.72rem;color:var(--sage);letter-spacing:1px;text-transform:uppercase;margin-bottom:.35rem}
+  .tl-role{font-size:.84rem;color:var(--lav);margin-bottom:.5rem;font-weight:500}
+  .tl-duties{list-style:none;padding:0}
+  .tl-duties li{font-size:.81rem;color:var(--muted);padding:.18rem 0 .18rem 1rem;position:relative}
+  .tl-duties li::before{content:'—';position:absolute;left:0;color:var(--border)}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
+  .skill-cat{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.3rem}
+  .skill-cat-title{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--rose);margin-bottom:.9rem;font-weight:600}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:.45rem}
+  .tag{background:var(--bg3);color:var(--text);font-size:.73rem;padding:.28rem .65rem;border-radius:20px;border:1px solid var(--border)}
+
+  /* TRAININGS */
+  .trainings-list{display:flex;flex-direction:column;gap:.85rem}
+  .training-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;transition:border-color .3s}
+  .training-card:hover{border-color:var(--sage)}
+  .training-meta{}
+  .training-org{font-size:.78rem;font-weight:600;color:var(--sage);margin-bottom:.2rem}
+  .training-date{font-size:.72rem;color:var(--muted);letter-spacing:.5px}
+  .training-title{font-size:.88rem;font-weight:600;color:#e8e4e0}
+
+  /* CONTACT */
+  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+  .contact-desc{color:var(--muted);font-size:.88rem;line-height:1.85;margin-bottom:1.8rem}
+  .contact-links{display:flex;flex-direction:column;gap:.7rem}
+  .contact-link{display:flex;align-items:center;gap:.7rem;color:var(--text);text-decoration:none;font-size:.83rem;transition:color .3s}
+  .contact-link:hover{color:var(--rose)}
+  .contact-link-icon{width:30px;height:30px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
+  .contact-form{display:flex;flex-direction:column;gap:.7rem}
+  .contact-form input,.contact-form textarea{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.72rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.83rem;outline:none;transition:border-color .3s;resize:none}
+  .contact-form input:focus,.contact-form textarea:focus{border-color:var(--lav)}
+  .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted)}
+  .contact-form textarea{height:115px}
+
+  footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--muted);font-size:.76rem;letter-spacing:.5px}
+
+  @media(max-width:680px){
+    .hero-inner{grid-template-columns:1fr}
+    .hero-photo-wrap{display:none}
+    .about-grid,.contact-wrap{grid-template-columns:1fr}
+    .training-card{grid-template-columns:1fr}
+    .nav-links{gap:.9rem}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#hero">RR</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#employment">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#trainings">Trainings</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">Systems Admin · IT Professional · Philippines</div>
+      <h1 class="hero-name">Ronald<br/>Repolona</h1>
+      <div class="hero-title">Systems Admin Manager · Cloud & Network Architect</div>
+      <p class="hero-desc">20+ years designing and managing IT infrastructure — from network architecture and cloud services to team leadership, security, and procurement.</p>
+      <div class="hero-cta">
+        <a class="btn btn-outline" href="#employment">View Experience</a>
+        <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="https://avatars.githubusercontent.com/u/75105781" alt="Ronald Repolona"/>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <div class="about-bio">
+      <p>Hi, I'm Ronald — a Systems Admin Manager based in the Philippines with over two decades of experience in IT infrastructure, cloud architecture, and network design.</p>
+      <p>I'm not all that good at talking about myself, but I'll give it a shot. Outside of work, I love playing guitars and listening to music. I also love to tinker with things.</p>
+      <p>I'm a proud member of <strong style="color:var(--lav)">Missionary Families of Christ</strong> since 1995 — serving in the Music Ministry, as YFC Servant, and as Servant Coordinator for Singles.</p>
+    </div>
+    <div>
+      <div class="interest-card">
+        <div class="interest-icon">🎸</div>
+        <div class="interest-title">Music</div>
+        <div class="interest-desc">Guitar player and music enthusiast — music is a big part of who I am.</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">🔧</div>
+        <div class="interest-title">Tinkering</div>
+        <div class="interest-desc">I love figuring out how things work and building things from scratch.</div>
+      </div>
+      <div class="interest-card">
+        <div class="interest-icon">✝️</div>
+        <div class="interest-title">Faith & Community</div>
+        <div class="interest-desc">Active CFC-FFL member serving in music ministry and youth community since 1995.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMPLOYMENT -->
+<section id="employment">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Employment</h2>
+  <div class="timeline">
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">West Acton Inc</div>
+      <div class="tl-period">Oct 2019 – Present · Remote</div>
+      <div class="tl-role">Systems Admin Manager</div>
+      <ul class="tl-duties">
+        <li>Interact with managers, local leaders, and clients for IT requirements</li>
+        <li>Define IT infrastructure requirements, create proposals, and initiate projects</li>
+        <li>Recommend and evaluate IT infrastructure, strategies, policies, and procedures</li>
+        <li>Financial forecasting — annual budgets, expenditure scheduling, cost effectiveness</li>
+        <li>Oversee team schedules, system updates, migrations, and maintenance</li>
+        <li>Conduct daily meetings to present tasks and check progress</li>
+        <li>Initiate planning and provide technical training to the team</li>
+        <li>Oversee 20+ servers (remote and internal)</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">Cyscorpions / Klab Cyscorpions Inc</div>
+      <div class="tl-period">Feb 2017 – Present · Makati City</div>
+      <div class="tl-role">Systems Admin — Manager 2</div>
+      <ul class="tl-duties">
+        <li>Architect and design cloud services for clients</li>
+        <li>Architect and design network infrastructure (Manila & Cebu)</li>
+        <li>Oversee team schedules, system updates, migrations, and maintenance</li>
+        <li>Provide technical training and planning for the team</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">Klab Cyscorpions Inc</div>
+      <div class="tl-period">Feb 2012 – Feb 2017 · 5 yrs</div>
+      <div class="tl-role">Systems Admin — Manager 2</div>
+      <ul class="tl-duties">
+        <li>Handled Infra Team and Dev Team for internal projects</li>
+        <li>Financial forecasting — annual budgets and IT procurement</li>
+        <li>Managed corporate emails, version control, Xen servers, NAS, VoIP, DNS</li>
+        <li>Office security — firewall, VPNs, CCTV, biometrics</li>
+        <li>Oversee 70+ servers (remote and internal)</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">Cyscorpions Inc</div>
+      <div class="tl-period">Sep 2006 – Feb 2012 · 5 yrs 6 mos</div>
+      <div class="tl-role">Systems Administrator</div>
+      <ul class="tl-duties">
+        <li>Install, configure, deploy, test, maintain, patch, troubleshoot, and upgrade servers, network, and workstations</li>
+        <li>Manage and monitor installed systems</li>
+        <li>Administer servers deployed at hosting sites</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">INQ7.NET — An Inquirer and GMA7 Company</div>
+      <div class="tl-period">Aug 2004 – Sep 2006 · 2 yrs 2 mos</div>
+      <div class="tl-role">IT Specialist</div>
+      <ul class="tl-duties">
+        <li>Technical support for all departments</li>
+        <li>Install, configure, deploy, maintain and troubleshoot network and workstations</li>
+        <li>24/7 on-call support for office technical issues</li>
+      </ul>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-company">Export and Industry Bank</div>
+      <div class="tl-period">Apr 2004 – Jun 2004 · 3 mos</div>
+      <div class="tl-role">IT Technical Support (Job Trainee)</div>
+      <ul class="tl-duties">
+        <li>Technical support for all departments and bank branches within Metro Manila</li>
+        <li>Install, configure, deploy, maintain, and troubleshoot network and workstations</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Expertise</div>
+  <h2 class="section-title">Skills</h2>
+  <div class="skills-grid">
+    <div class="skill-cat">
+      <div class="skill-cat-title">Cloud & Infrastructure</div>
+      <div class="skill-tags">
+        <span class="tag">Cloud Architecture</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Xen Servers</span>
+        <span class="tag">NAS</span>
+        <span class="tag">Server Hosting</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Networking</div>
+      <div class="skill-tags">
+        <span class="tag">Network Design</span>
+        <span class="tag">Firewall</span>
+        <span class="tag">VPN</span>
+        <span class="tag">VoIP</span>
+        <span class="tag">DNS</span>
+        <span class="tag">CCTV</span>
+        <span class="tag">Biometrics</span>
+        <span class="tag">CCNA</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Systems Admin</div>
+      <div class="skill-tags">
+        <span class="tag">Linux (RHEL/Q-Linux)</span>
+        <span class="tag">Version Control</span>
+        <span class="tag">Corporate Email</span>
+        <span class="tag">IT Procurement</span>
+        <span class="tag">Documentation</span>
+      </div>
+    </div>
+    <div class="skill-cat">
+      <div class="skill-cat-title">Leadership & Management</div>
+      <div class="skill-tags">
+        <span class="tag">Team Management</span>
+        <span class="tag">Technical Training</span>
+        <span class="tag">Budget Forecasting</span>
+        <span class="tag">Project Management</span>
+        <span class="tag">Agile / Tasking</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAININGS -->
+<section id="trainings">
+  <div class="section-label">Learning & Development</div>
+  <h2 class="section-title">Trainings</h2>
+  <div class="trainings-list">
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">SGS Philippines</div>
+        <div class="training-date">June 2016</div>
+      </div>
+      <div class="training-title">Project Management</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Center for Leadership & Change, Inc</div>
+        <div class="training-date">March 2013</div>
+      </div>
+      <div class="training-title">Franklin Covey — 7 Habits of Highly Effective People</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Amazon Web Services</div>
+        <div class="training-date">February 2013</div>
+      </div>
+      <div class="training-title">Architecting with Amazon Web Services</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Q-Linux Solutions Inc</div>
+        <div class="training-date">July 2006</div>
+      </div>
+      <div class="training-title">Q-Linux Lab 202</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Q-Linux Solutions Inc</div>
+        <div class="training-date">May 2006</div>
+      </div>
+      <div class="training-title">Q-Linux Lab 201</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Q-Linux Solutions Inc</div>
+        <div class="training-date">June 2005</div>
+      </div>
+      <div class="training-title">Q-Linux Lab 101</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Mapua IT Center</div>
+        <div class="training-date">December 2003</div>
+      </div>
+      <div class="training-title">Cisco CCNA 4 — WAN Technologies</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Mapua IT Center</div>
+        <div class="training-date">September 2003</div>
+      </div>
+      <div class="training-title">Cisco CCNA 3 — Switching and Intermediate Routing</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Mapua IT Center</div>
+        <div class="training-date">June 2003</div>
+      </div>
+      <div class="training-title">Cisco CCNA 2 — Routers and Routing Basics</div>
+    </div>
+
+    <div class="training-card">
+      <div class="training-meta">
+        <div class="training-org">Mapua IT Center</div>
+        <div class="training-date">March 2003</div>
+      </div>
+      <div class="training-title">Cisco CCNA 1 — Networking Basics</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Get in Touch</div>
+  <h2 class="section-title">Contact Me</h2>
+  <div class="contact-wrap">
+    <div>
+      <p class="contact-desc">Feel free to reach out — whether it's about a project, a collaboration, or just to say hello.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="https://ronald.repolona.com" target="_blank">
+          <span class="contact-link-icon">🌐</span>ronald.repolona.com
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/repolona/" target="_blank">
+          <span class="contact-link-icon">💼</span>linkedin.com/in/repolona
+        </a>
+      </div>
+    </div>
+    <div class="contact-form">
+      <input type="text" placeholder="Your Name"/>
+      <input type="email" placeholder="Your Email"/>
+      <textarea placeholder="Your Message"></textarea>
+      <button class="btn btn-outline" style="align-self:flex-start">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<footer>© Ronald Repolona 2019–2026 · Built with care</footer>
+
+</body>
+</html>
