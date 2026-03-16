@@ -56,17 +56,17 @@
   .interest-title{font-size:.8rem;font-weight:600;color:var(--lav);letter-spacing:.5px;margin-bottom:.2rem}
   .interest-desc{font-size:.78rem;color:var(--muted)}
 
-  /* TIMELINE */
-  .timeline{position:relative;padding-left:1.5rem}
-  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--border)}
-  .tl-item{position:relative;margin-bottom:2.5rem}
-  .tl-dot{position:absolute;left:-1.88rem;top:7px;width:10px;height:10px;border-radius:50%;border:2px solid var(--rose);background:var(--bg)}
-  .tl-company{font-size:.98rem;font-weight:600;color:#e8e4e0;margin-bottom:.15rem}
-  .tl-period{font-size:.72rem;color:var(--sage);letter-spacing:1px;text-transform:uppercase;margin-bottom:.35rem}
-  .tl-role{font-size:.84rem;color:var(--lav);margin-bottom:.5rem;font-weight:500}
-  .tl-duties{list-style:none;padding:0}
-  .tl-duties li{font-size:.81rem;color:var(--muted);padding:.18rem 0 .18rem 1rem;position:relative}
-  .tl-duties li::before{content:'—';position:absolute;left:0;color:var(--border)}
+  /* EMPLOYMENT CARDS */
+  .emp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+  .emp-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .3s,transform .2s}
+  .emp-card:hover{border-color:var(--rose);transform:translateY(-2px)}
+  .emp-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
+  .emp-company{font-size:.95rem;font-weight:600;color:#e8e4e0;line-height:1.3}
+  .emp-period{font-size:.7rem;color:var(--sage);letter-spacing:.5px;white-space:nowrap;padding-top:.15rem}
+  .emp-role{font-size:.78rem;color:var(--lav);font-weight:500;letter-spacing:.3px}
+  .emp-desc{font-size:.78rem;color:var(--muted);line-height:1.7;margin-top:.25rem}
+  .emp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+  .emp-tag{font-size:.68rem;padding:.2rem .55rem;border-radius:20px;background:var(--bg3);border:1px solid var(--border);color:var(--gray)}
 
   /* SKILLS */
   .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
@@ -77,9 +77,8 @@
 
   /* TRAININGS */
   .trainings-list{display:flex;flex-direction:column;gap:.85rem}
-  .training-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:140px 1fr;gap:1rem;align-items:start;transition:border-color .3s}
+  .training-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:160px 1fr;gap:1rem;align-items:center;transition:border-color .3s}
   .training-card:hover{border-color:var(--sage)}
-  .training-meta{}
   .training-org{font-size:.78rem;font-weight:600;color:var(--sage);margin-bottom:.2rem}
   .training-date{font-size:.72rem;color:var(--muted);letter-spacing:.5px}
   .training-title{font-size:.88rem;font-weight:600;color:#e8e4e0}
@@ -166,7 +165,7 @@
       <div class="interest-card">
         <div class="interest-icon">✝️</div>
         <div class="interest-title">Faith & Community</div>
-        <div class="interest-desc">Active CFC-FFL member serving in music ministry and youth community since 1995.</div>
+        <div class="interest-desc">Active MFC member serving in music ministry and community since 1995.</div>
       </div>
     </div>
   </div>
@@ -176,85 +175,90 @@
 <section id="employment">
   <div class="section-label">Career</div>
   <h2 class="section-title">Employment</h2>
-  <div class="timeline">
+  <div class="emp-grid">
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">West Acton Inc</div>
-      <div class="tl-period">Oct 2019 – Present · Remote</div>
-      <div class="tl-role">Systems Admin Manager</div>
-      <ul class="tl-duties">
-        <li>Interact with managers, local leaders, and clients for IT requirements</li>
-        <li>Define IT infrastructure requirements, create proposals, and initiate projects</li>
-        <li>Recommend and evaluate IT infrastructure, strategies, policies, and procedures</li>
-        <li>Financial forecasting — annual budgets, expenditure scheduling, cost effectiveness</li>
-        <li>Oversee team schedules, system updates, migrations, and maintenance</li>
-        <li>Conduct daily meetings to present tasks and check progress</li>
-        <li>Initiate planning and provide technical training to the team</li>
-        <li>Oversee 20+ servers (remote and internal)</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">West Acton Inc</div>
+        <div class="emp-period">2019 – Present</div>
+      </div>
+      <div class="emp-role">Systems Admin Manager · Remote</div>
+      <div class="emp-desc">IT operations, infrastructure planning, and management across 20+ servers for a remote environment.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Cloud</span>
+        <span class="emp-tag">Team Lead</span>
+        <span class="emp-tag">Budget</span>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">Cyscorpions / Klab Cyscorpions Inc</div>
-      <div class="tl-period">Feb 2017 – Present · Makati City</div>
-      <div class="tl-role">Systems Admin — Manager 2</div>
-      <ul class="tl-duties">
-        <li>Architect and design cloud services for clients</li>
-        <li>Architect and design network infrastructure (Manila & Cebu)</li>
-        <li>Oversee team schedules, system updates, migrations, and maintenance</li>
-        <li>Provide technical training and planning for the team</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">Cyscorpions Inc</div>
+        <div class="emp-period">2017 – Present</div>
+      </div>
+      <div class="emp-role">Systems Admin — Manager 2 · Makati</div>
+      <div class="emp-desc">Architecting cloud services for clients and designing network infrastructure across Manila and Cebu offices.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Network Design</span>
+        <span class="emp-tag">AWS</span>
+        <span class="emp-tag">Infra</span>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">Klab Cyscorpions Inc</div>
-      <div class="tl-period">Feb 2012 – Feb 2017 · 5 yrs</div>
-      <div class="tl-role">Systems Admin — Manager 2</div>
-      <ul class="tl-duties">
-        <li>Handled Infra Team and Dev Team for internal projects</li>
-        <li>Financial forecasting — annual budgets and IT procurement</li>
-        <li>Managed corporate emails, version control, Xen servers, NAS, VoIP, DNS</li>
-        <li>Office security — firewall, VPNs, CCTV, biometrics</li>
-        <li>Oversee 70+ servers (remote and internal)</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">Klab Cyscorpions Inc</div>
+        <div class="emp-period">2012 – 2017</div>
+      </div>
+      <div class="emp-role">Systems Admin — Manager 2</div>
+      <div class="emp-desc">Managed infra and dev teams, overseeing 70+ servers, IT procurement, office security, and in-house application development.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Xen</span>
+        <span class="emp-tag">VPN</span>
+        <span class="emp-tag">VoIP</span>
+        <span class="emp-tag">Dev</span>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">Cyscorpions Inc</div>
-      <div class="tl-period">Sep 2006 – Feb 2012 · 5 yrs 6 mos</div>
-      <div class="tl-role">Systems Administrator</div>
-      <ul class="tl-duties">
-        <li>Install, configure, deploy, test, maintain, patch, troubleshoot, and upgrade servers, network, and workstations</li>
-        <li>Manage and monitor installed systems</li>
-        <li>Administer servers deployed at hosting sites</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">Cyscorpions Inc</div>
+        <div class="emp-period">2006 – 2012</div>
+      </div>
+      <div class="emp-role">Systems Administrator</div>
+      <div class="emp-desc">Deployed, maintained, and administered servers across internal infrastructure and external hosting environments.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Linux</span>
+        <span class="emp-tag">Networking</span>
+        <span class="emp-tag">Servers</span>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">INQ7.NET — An Inquirer and GMA7 Company</div>
-      <div class="tl-period">Aug 2004 – Sep 2006 · 2 yrs 2 mos</div>
-      <div class="tl-role">IT Specialist</div>
-      <ul class="tl-duties">
-        <li>Technical support for all departments</li>
-        <li>Install, configure, deploy, maintain and troubleshoot network and workstations</li>
-        <li>24/7 on-call support for office technical issues</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">INQ7.NET</div>
+        <div class="emp-period">2004 – 2006</div>
+      </div>
+      <div class="emp-role">IT Specialist · Inquirer & GMA7</div>
+      <div class="emp-desc">Provided 24/7 technical support across all departments of a major Philippine news media company.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Support</span>
+        <span class="emp-tag">Network</span>
+        <span class="emp-tag">Workstations</span>
+      </div>
     </div>
 
-    <div class="tl-item">
-      <div class="tl-dot"></div>
-      <div class="tl-company">Export and Industry Bank</div>
-      <div class="tl-period">Apr 2004 – Jun 2004 · 3 mos</div>
-      <div class="tl-role">IT Technical Support (Job Trainee)</div>
-      <ul class="tl-duties">
-        <li>Technical support for all departments and bank branches within Metro Manila</li>
-        <li>Install, configure, deploy, maintain, and troubleshoot network and workstations</li>
-      </ul>
+    <div class="emp-card">
+      <div class="emp-card-top">
+        <div class="emp-company">Export & Industry Bank</div>
+        <div class="emp-period">2004</div>
+      </div>
+      <div class="emp-role">IT Technical Support · Trainee</div>
+      <div class="emp-desc">Supported IT operations across bank departments and Metro Manila branches as a job trainee.</div>
+      <div class="emp-tags">
+        <span class="emp-tag">Support</span>
+        <span class="emp-tag">Banking</span>
+      </div>
     </div>
 
   </div>
@@ -270,6 +274,8 @@
       <div class="skill-tags">
         <span class="tag">Cloud Architecture</span>
         <span class="tag">AWS</span>
+        <span class="tag">Azure</span>
+        <span class="tag">GCP</span>
         <span class="tag">Xen Servers</span>
         <span class="tag">NAS</span>
         <span class="tag">Server Hosting</span>
@@ -283,8 +289,6 @@
         <span class="tag">VPN</span>
         <span class="tag">VoIP</span>
         <span class="tag">DNS</span>
-        <span class="tag">CCTV</span>
-        <span class="tag">Biometrics</span>
         <span class="tag">CCNA</span>
       </div>
     </div>
@@ -316,7 +320,6 @@
   <div class="section-label">Learning & Development</div>
   <h2 class="section-title">Trainings</h2>
   <div class="trainings-list">
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">SGS Philippines</div>
@@ -324,7 +327,6 @@
       </div>
       <div class="training-title">Project Management</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Center for Leadership & Change, Inc</div>
@@ -332,7 +334,6 @@
       </div>
       <div class="training-title">Franklin Covey — 7 Habits of Highly Effective People</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Amazon Web Services</div>
@@ -340,7 +341,6 @@
       </div>
       <div class="training-title">Architecting with Amazon Web Services</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Q-Linux Solutions Inc</div>
@@ -348,7 +348,6 @@
       </div>
       <div class="training-title">Q-Linux Lab 202</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Q-Linux Solutions Inc</div>
@@ -356,7 +355,6 @@
       </div>
       <div class="training-title">Q-Linux Lab 201</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Q-Linux Solutions Inc</div>
@@ -364,7 +362,6 @@
       </div>
       <div class="training-title">Q-Linux Lab 101</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Mapua IT Center</div>
@@ -372,7 +369,6 @@
       </div>
       <div class="training-title">Cisco CCNA 4 — WAN Technologies</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Mapua IT Center</div>
@@ -380,7 +376,6 @@
       </div>
       <div class="training-title">Cisco CCNA 3 — Switching and Intermediate Routing</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Mapua IT Center</div>
@@ -388,7 +383,6 @@
       </div>
       <div class="training-title">Cisco CCNA 2 — Routers and Routing Basics</div>
     </div>
-
     <div class="training-card">
       <div class="training-meta">
         <div class="training-org">Mapua IT Center</div>
@@ -396,7 +390,6 @@
       </div>
       <div class="training-title">Cisco CCNA 1 — Networking Basics</div>
     </div>
-
   </div>
 </section>
 
