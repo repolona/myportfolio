@@ -4,117 +4,134 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ronald Repolona</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Barlow+Condensed:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --bg:#1a1a1e;--bg2:#222228;--bg3:#2a2a32;
-    --text:#d4d0cc;--muted:#7a7870;
-    --rose:#d4a5a5;--sage:#a5bfb0;--lav:#b8afc8;--gray:#8a8a90;
-    --border:#33333a;
-  }
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7}
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#141418;--bg2:#1c1c22;--bg3:#242430;
+  --text:#e2ddd8;--muted:#6b6760;
+  --rose:#c9968e;--sage:#8aab96;--lav:#9e97b8;--gray:#7a7a84;
+  --border:#2a2a34;
+  --serif:'Bebas Neue',sans-serif;
+  --sans:'Barlow',sans-serif;
+  --mono:'DM Mono',monospace;
+  --condensed:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
 
-  nav{position:fixed;top:0;width:100%;z-index:100;background:rgba(26,26,30,0.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem}
-  .nav-inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-  .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--rose);letter-spacing:1px;text-decoration:none}
-  .nav-links{display:flex;gap:1.6rem;list-style:none}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.78rem;letter-spacing:1px;text-transform:uppercase;transition:color .3s}
-  .nav-links a:hover{color:var(--text)}
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:0 2.5rem;background:rgba(20,20,24,0.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-logo{font-family:var(--serif);font-size:1.3rem;color:var(--rose);text-decoration:none;letter-spacing:3px}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.7rem;font-family:var(--mono);letter-spacing:2px;text-transform:uppercase;transition:color .25s}
+.nav-links a:hover{color:var(--text)}
 
-  section{max-width:920px;margin:0 auto;padding:100px 2rem 60px}
+/* SECTION WRAPPER */
+.section-block{position:relative;overflow:hidden}
+.section-inner{max-width:1100px;margin:0 auto;padding:120px 2.5rem 100px;position:relative;z-index:2}
+.section-block canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55}
+.section-block+.section-block{border-top:1px solid var(--border)}
 
-  /* HERO */
-  #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden}
-  #hero::before{content:'';position:absolute;top:-10%;right:-5%;width:500px;height:500px;background:radial-gradient(circle,rgba(180,160,180,0.07) 0%,transparent 65%);pointer-events:none}
-  .hero-inner{display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:center;width:100%}
-  .hero-label{font-size:0.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:1rem}
-  .hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.1;color:#e8e4e0;margin-bottom:.5rem}
-  .hero-title{font-size:.92rem;color:var(--lav);font-weight:300;margin-bottom:1.4rem;letter-spacing:.5px}
-  .hero-desc{max-width:460px;color:var(--muted);font-size:.88rem;line-height:1.85;margin-bottom:2.2rem}
-  .hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-  .btn{padding:.62rem 1.4rem;border-radius:4px;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:pointer;border:none;font-family:'Inter',sans-serif}
-  .btn-outline{border:1px solid var(--rose);color:var(--rose);background:transparent}
-  .btn-outline:hover{background:var(--rose);color:var(--bg)}
-  .btn-ghost{border:1px solid var(--border);color:var(--muted);background:transparent}
-  .btn-ghost:hover{border-color:var(--gray);color:var(--text)}
-  .hero-photo-wrap{flex-shrink:0}
-  .hero-photo{width:200px;height:200px;border-radius:50%;object-fit:cover;border:2px solid var(--border);filter:grayscale(20%);box-shadow:0 0 40px rgba(180,160,180,0.12)}
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:58px}
+.hero-inner{max-width:1100px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center}
+.hero-eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem}
+.hero-name{font-family:var(--serif);font-size:clamp(5rem,11vw,10rem);line-height:.92;color:#f4f0ec;margin-bottom:1rem;letter-spacing:4px;text-transform:uppercase}
+.hero-name span{display:block;color:var(--rose)}
+.hero-role{font-family:var(--condensed);font-size:.95rem;font-weight:300;color:var(--lav);letter-spacing:4px;text-transform:uppercase;margin-bottom:1.8rem}
+.hero-desc{color:var(--muted);font-size:.95rem;line-height:2;max-width:460px;margin-bottom:2.5rem;font-weight:300}
+.hero-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
+.btn{padding:.75rem 2rem;border-radius:2px;font-size:.7rem;font-family:var(--condensed);letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .25s;cursor:pointer;border:none}
+.btn-fill{background:var(--rose);color:var(--bg);border:1px solid var(--rose)}
+.btn-fill:hover{background:transparent;color:var(--rose)}
+.btn-ghost{border:1px solid var(--border);color:var(--muted);background:transparent}
+.btn-ghost:hover{border-color:var(--gray);color:var(--text)}
+.hero-photo{width:260px;height:320px;object-fit:cover;border-radius:4px;filter:grayscale(20%);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.5)}
 
-  /* SECTION HEADERS */
-  .section-label{font-size:.72rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:.6rem}
-  .section-title{font-family:'Playfair Display',serif;font-size:2rem;color:#e8e4e0;margin-bottom:2.5rem;padding-bottom:1rem;position:relative}
-  .section-title::after{content:'';position:absolute;bottom:0;left:0;width:36px;height:1px;background:var(--rose)}
+/* SECTION LABELS */
+.s-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:.6rem}
+.s-title{font-family:var(--serif);font-size:clamp(4rem,8vw,7.5rem);line-height:.92;color:#f4f0ec;margin-bottom:3rem;letter-spacing:4px;text-transform:uppercase}
+.s-title em{color:var(--rose);font-style:normal}
 
-  /* ABOUT */
-  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-  .about-bio p{margin-bottom:1rem;font-size:.9rem;color:var(--text);line-height:1.9}
-  .interest-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.1rem 1.3rem;margin-bottom:.8rem;transition:border-color .3s}
-  .interest-card:hover{border-color:var(--lav)}
-  .interest-icon{font-size:1.3rem;margin-bottom:.3rem}
-  .interest-title{font-size:.8rem;font-weight:600;color:var(--lav);letter-spacing:.5px;margin-bottom:.2rem}
-  .interest-desc{font-size:.78rem;color:var(--muted)}
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
+.about-bio p{font-size:1rem;line-height:2;color:var(--text);margin-bottom:1.2rem;font-weight:300}
+.about-bio p:last-child{margin-bottom:0}
+.about-bio strong{font-weight:600;color:#f4f0ec}
+.interest-list{display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem}
+.interest-item{border:1px solid var(--border);border-radius:4px;padding:1.2rem 1.4rem;background:rgba(28,28,34,.6);backdrop-filter:blur(8px);transition:border-color .25s}
+.interest-item:hover{border-color:var(--lav)}
+.i-icon{font-size:1.2rem;margin-bottom:.4rem}
+.i-title{font-size:.82rem;font-weight:600;color:#f4f0ec;margin-bottom:.2rem;letter-spacing:.2px}
+.i-desc{font-size:.78rem;color:var(--muted);line-height:1.7;font-weight:300}
 
-  /* EMPLOYMENT CARDS */
-  .emp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-  .emp-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1.5rem;display:flex;flex-direction:column;gap:.5rem;transition:border-color .3s,transform .2s}
-  .emp-card:hover{border-color:var(--rose);transform:translateY(-2px)}
-  .emp-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem}
-  .emp-company{font-size:.95rem;font-weight:600;color:#e8e4e0;line-height:1.3}
-  .emp-period{font-size:.7rem;color:var(--sage);letter-spacing:.5px;white-space:nowrap;padding-top:.15rem}
-  .emp-role{font-size:.78rem;color:var(--lav);font-weight:500;letter-spacing:.3px}
-  .emp-desc{font-size:.78rem;color:var(--muted);line-height:1.7;margin-top:.25rem}
-  .emp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
-  .emp-tag{font-size:.68rem;padding:.2rem .55rem;border-radius:20px;background:var(--bg3);border:1px solid var(--border);color:var(--gray)}
+/* EMPLOYMENT */
+.emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.emp-card{border:1px solid var(--border);border-radius:4px;padding:1.8rem;background:rgba(28,28,34,.55);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:.5rem;transition:border-color .25s,transform .2s}
+.emp-card:hover{border-color:var(--rose);transform:translateY(-3px)}
+.emp-year{font-family:var(--mono);font-size:.62rem;color:var(--sage);letter-spacing:1.5px;margin-bottom:.3rem}
+.emp-co{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:#f4f0ec;line-height:1.1;margin-bottom:.3rem}
+.emp-role{font-family:var(--mono);font-size:.68rem;color:var(--lav);letter-spacing:.8px;margin-bottom:.5rem}
+.emp-desc{font-size:.82rem;color:var(--muted);line-height:1.75;font-weight:300;flex:1}
+.emp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.emp-tag{font-size:.62rem;font-family:var(--mono);padding:.18rem .55rem;border-radius:2px;background:var(--bg3);border:1px solid var(--border);color:var(--gray);letter-spacing:.5px}
 
-  /* SKILLS */
-  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1rem}
-  .skill-cat{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.3rem}
-  .skill-cat-title{font-size:.72rem;text-transform:uppercase;letter-spacing:2px;color:var(--rose);margin-bottom:.9rem;font-weight:600}
-  .skill-tags{display:flex;flex-wrap:wrap;gap:.45rem}
-  .tag{background:var(--bg3);color:var(--text);font-size:.73rem;padding:.28rem .65rem;border-radius:20px;border:1px solid var(--border)}
+/* SKILLS */
+.skills-layout{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.skill-cat{border:1px solid var(--border);border-radius:4px;padding:2rem;background:rgba(28,28,34,.55);backdrop-filter:blur(8px)}
+.skill-cat-title{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:#f4f0ec;margin-bottom:1.2rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.tag{background:var(--bg3);color:var(--text);font-size:.75rem;font-weight:500;padding:.3rem .8rem;border-radius:2px;border:1px solid var(--border)}
 
-  /* TRAININGS */
-  .trainings-list{display:flex;flex-direction:column;gap:.85rem}
-  .training-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:grid;grid-template-columns:160px 1fr;gap:1rem;align-items:center;transition:border-color .3s}
-  .training-card:hover{border-color:var(--sage)}
-  .training-org{font-size:.78rem;font-weight:600;color:var(--sage);margin-bottom:.2rem}
-  .training-date{font-size:.72rem;color:var(--muted);letter-spacing:.5px}
-  .training-title{font-size:.88rem;font-weight:600;color:#e8e4e0}
+/* TRAININGS */
+.trainings-list{display:flex;flex-direction:column;gap:0}
+.training-item{display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:center;padding:1.4rem 0;border-bottom:1px solid var(--border);transition:background .2s}
+.training-item:first-child{border-top:1px solid var(--border)}
+.training-item:hover .t-title{color:var(--rose)}
+.t-org{font-size:.78rem;font-weight:600;color:var(--sage);margin-bottom:.2rem}
+.t-date{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:1px}
+.t-title{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:#f4f0ec;transition:color .25s}
 
-  /* CONTACT */
-  .contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
-  .contact-desc{color:var(--muted);font-size:.88rem;line-height:1.85;margin-bottom:1.8rem}
-  .contact-links{display:flex;flex-direction:column;gap:.7rem}
-  .contact-link{display:flex;align-items:center;gap:.7rem;color:var(--text);text-decoration:none;font-size:.83rem;transition:color .3s}
-  .contact-link:hover{color:var(--rose)}
-  .contact-link-icon{width:30px;height:30px;background:var(--bg2);border:1px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0}
-  .contact-form{display:flex;flex-direction:column;gap:.7rem}
-  .contact-form input,.contact-form textarea{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.72rem 1rem;color:var(--text);font-family:'Inter',sans-serif;font-size:.83rem;outline:none;transition:border-color .3s;resize:none}
-  .contact-form input:focus,.contact-form textarea:focus{border-color:var(--lav)}
-  .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted)}
-  .contact-form textarea{height:115px}
-  .form-success{display:none;background:var(--bg2);border:1px solid var(--sage);border-radius:6px;padding:1rem 1.2rem;font-size:.83rem;color:var(--sage);text-align:center}
-  .form-error{display:none;background:var(--bg2);border:1px solid var(--rose);border-radius:6px;padding:1rem 1.2rem;font-size:.83rem;color:var(--rose);text-align:center}
-  .btn:disabled{opacity:.5;cursor:not-allowed}
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contact-desc{font-size:1rem;color:var(--muted);line-height:2;margin-bottom:2rem;font-weight:300}
+.contact-links{display:flex;flex-direction:column;gap:.8rem}
+.c-link{display:flex;align-items:center;gap:.8rem;color:var(--text);text-decoration:none;font-size:.85rem;transition:color .25s;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.c-link:last-child{border-bottom:none}
+.c-link:hover{color:var(--rose)}
+.c-link-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;width:70px;flex-shrink:0}
+.contact-form{display:flex;flex-direction:column;gap:.8rem}
+.contact-form input,.contact-form textarea{background:transparent;border:none;border-bottom:1px solid var(--border);padding:.75rem 0;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .25s;resize:none;width:100%}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--rose)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted);font-size:.85rem}
+.contact-form textarea{height:100px;margin-top:.5rem}
+.form-success{display:none;border:1px solid var(--sage);border-radius:3px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--sage);margin-top:.4rem}
+.form-error{display:none;border:1px solid var(--rose);border-radius:3px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--rose);margin-top:.4rem}
+.btn:disabled{opacity:.45;cursor:not-allowed}
 
-  footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--muted);font-size:.76rem;letter-spacing:.5px}
+footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color:var(--muted);font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px}
 
-  @media(max-width:680px){
-    .hero-inner{grid-template-columns:1fr}
-    .hero-photo-wrap{display:none}
-    .about-grid,.contact-wrap{grid-template-columns:1fr}
-    .training-card{grid-template-columns:1fr}
-    .nav-links{gap:.9rem}
-  }
+@media(max-width:900px){
+  .emp-grid{grid-template-columns:1fr 1fr}
+  .skills-layout{grid-template-columns:1fr}
+  .about-layout,.contact-layout{grid-template-columns:1fr;gap:3rem}
+}
+@media(max-width:640px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-photo{display:none}
+  .emp-grid{grid-template-columns:1fr}
+  .training-item{grid-template-columns:1fr;gap:.5rem}
+  .nav-links{gap:1.2rem}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="#hero">RR</a>
+    <a class="nav-logo" href="#hero">Ronald Repolona</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#employment">Work</a></li>
@@ -126,309 +143,360 @@
 </nav>
 
 <!-- HERO -->
-<section id="hero">
+<div class="section-block" id="hero-block" style="min-height:100vh;display:flex;align-items:center;padding-top:58px;position:relative;overflow:hidden">
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div>
-      <div class="hero-label">Systems Admin · IT Professional · Philippines</div>
-      <h1 class="hero-name">Ronald<br/>Repolona</h1>
-      <div class="hero-title">Systems Admin Manager · Cloud & Network Architect</div>
+      <div class="hero-eyebrow">Systems Admin · IT Professional · Philippines</div>
+      <h1 class="hero-name"><span>Ronald</span>Repolona</h1>
+      <div class="hero-role">Systems Admin Manager · Cloud & Network Architect</div>
       <p class="hero-desc">20+ years designing and managing IT infrastructure — from network architecture and cloud services to team leadership, security, and procurement.</p>
       <div class="hero-cta">
-        <a class="btn btn-outline" href="#employment">View Experience</a>
+        <a class="btn btn-fill" href="#employment">View Experience</a>
         <a class="btn btn-ghost" href="#contact">Get in Touch</a>
       </div>
     </div>
-    <div class="hero-photo-wrap">
-      <img class="hero-photo" src="https://avatars.githubusercontent.com/u/75105781" alt="Ronald Repolona"/>
-    </div>
+    <img class="hero-photo" src="https://ronald.repolona.com/me.jpeg" alt="Ronald Repolona"/>
   </div>
-</section>
+</div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">Who I Am</div>
-  <h2 class="section-title">About Me</h2>
-  <div class="about-grid">
-    <div class="about-bio">
-      <p>Hi, I'm Ronald — a Systems Admin Manager based in the Philippines with over two decades of experience in IT infrastructure, cloud architecture, and network design.</p>
-      <p>I'm not all that good at talking about myself, but I'll give it a shot. Outside of work, I love playing guitars and listening to music. I also love to tinker with things.</p>
-      <p>I'm a proud member of <strong style="color:var(--lav)">Missionary Families of Christ</strong> since 1995 — serving in the Music Ministry, as YFC Servant, and as Servant Coordinator for Singles.</p>
-    </div>
-    <div>
-      <div class="interest-card">
-        <div class="interest-icon">🎸</div>
-        <div class="interest-title">Music</div>
-        <div class="interest-desc">Guitar player and music enthusiast — music is a big part of who I am.</div>
+<!-- ABOUT — background: floating musical notes / person silhouette -->
+<div class="section-block" id="about">
+  <canvas id="about-canvas"></canvas>
+  <div class="section-inner">
+    <div class="s-eyebrow">Who I Am</div>
+    <h2 class="s-title">About <em>Me</em></h2>
+    <div class="about-layout">
+      <div class="about-bio">
+        <p>Hi, I'm Ronald — a Systems Admin Manager based in the Philippines with over two decades of experience in IT infrastructure, cloud architecture, and network design.</p>
+        <p>I'm not all that good at talking about myself, but I'll give it a shot. Outside of work, I love playing guitars and listening to music. I also love to tinker with things.</p>
+        <p>I'm a proud member of <strong>Missionary Families of Christ</strong> since 1995 — serving in the Music Ministry, as YFC Servant, and as Servant Coordinator for Singles.</p>
       </div>
-      <div class="interest-card">
-        <div class="interest-icon">🔧</div>
-        <div class="interest-title">Tinkering</div>
-        <div class="interest-desc">I love figuring out how things work and building things from scratch.</div>
-      </div>
-      <div class="interest-card">
-        <div class="interest-icon">✝️</div>
-        <div class="interest-title">Faith & Community</div>
-        <div class="interest-desc">Active MFC member serving in music ministry and community since 1995.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EMPLOYMENT -->
-<section id="employment">
-  <div class="section-label">Career</div>
-  <h2 class="section-title">Employment</h2>
-  <div class="emp-grid">
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">West Acton Inc</div>
-        <div class="emp-period">2019 – Present</div>
-      </div>
-      <div class="emp-role">Systems Admin Manager · </div>
-      <div class="emp-desc">Infra operations, planning, and management across 20+ servers for a remote environment.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Cloud</span>
-        <span class="emp-tag">Team Lead</span>
-        <span class="emp-tag">Budget</span>
-      </div>
-    </div>
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">Cyscorpions Inc</div>
-        <div class="emp-period">2017 – Present</div>
-      </div>
-      <div class="emp-role">Systems Admin — Manager 2 · Makati</div>
-      <div class="emp-desc">Architecting cloud services for clients and designing network infrastructure across Manila and Cebu offices.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Network Design</span>
-        <span class="emp-tag">AWS</span>
-        <span class="emp-tag">Infra</span>
-      </div>
-    </div>
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">Klab Cyscorpions Inc</div>
-        <div class="emp-period">2012 – 2017</div>
-      </div>
-      <div class="emp-role">Systems Admin — Manager 2</div>
-      <div class="emp-desc">Managed infra and dev teams, overseeing 70+ servers, IT procurement, office security, and in-house application development.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Xen</span>
-        <span class="emp-tag">VPN</span>
-        <span class="emp-tag">VoIP</span>
-        <span class="emp-tag">Dev</span>
-      </div>
-    </div>
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">Cyscorpions Inc</div>
-        <div class="emp-period">2006 – 2012</div>
-      </div>
-      <div class="emp-role">Systems Administrator</div>
-      <div class="emp-desc">Deployed, maintained, and administered servers across internal infrastructure and external hosting environments.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Linux</span>
-        <span class="emp-tag">Networking</span>
-        <span class="emp-tag">Servers</span>
-      </div>
-    </div>
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">INQ7.NET</div>
-        <div class="emp-period">2004 – 2006</div>
-      </div>
-      <div class="emp-role">IT Specialist · Inquirer & GMA7</div>
-      <div class="emp-desc">Provided 24/7 technical support across all departments of a major Philippine news media company.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Support</span>
-        <span class="emp-tag">Network</span>
-        <span class="emp-tag">Workstations</span>
-      </div>
-    </div>
-
-    <div class="emp-card">
-      <div class="emp-card-top">
-        <div class="emp-company">Export & Industry Bank</div>
-        <div class="emp-period">2004</div>
-      </div>
-      <div class="emp-role">IT Technical Support · Trainee</div>
-      <div class="emp-desc">Supported IT operations across bank departments and Metro Manila branches as a job trainee.</div>
-      <div class="emp-tags">
-        <span class="emp-tag">Support</span>
-        <span class="emp-tag">Banking</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">Expertise</div>
-  <h2 class="section-title">Skills</h2>
-  <div class="skills-grid">
-    <div class="skill-cat">
-      <div class="skill-cat-title">Cloud & Infrastructure</div>
-      <div class="skill-tags">
-        <span class="tag">Cloud Architecture</span>
-        <span class="tag">AWS</span>
-        <span class="tag">Azure</span>
-        <span class="tag">GCP</span>
-        <span class="tag">Xen Servers</span>
-        <span class="tag">NAS</span>
-        <span class="tag">Server Hosting</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">Networking</div>
-      <div class="skill-tags">
-        <span class="tag">Network Design</span>
-        <span class="tag">Firewall</span>
-        <span class="tag">VPN</span>
-        <span class="tag">VoIP</span>
-        <span class="tag">DNS</span>
-        <span class="tag">CCNA</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">Systems Admin</div>
-      <div class="skill-tags">
-        <span class="tag">Linux (RHEL/Q-Linux)</span>
-        <span class="tag">Version Control</span>
-        <span class="tag">Corporate Email</span>
-        <span class="tag">IT Procurement</span>
-        <span class="tag">Documentation</span>
-      </div>
-    </div>
-    <div class="skill-cat">
-      <div class="skill-cat-title">Leadership & Management</div>
-      <div class="skill-tags">
-        <span class="tag">Team Management</span>
-        <span class="tag">Technical Training</span>
-        <span class="tag">Budget Forecasting</span>
-        <span class="tag">Project Management</span>
-        <span class="tag">Agile / Tasking</span>
+      <div class="interest-list">
+        <div class="interest-item">
+          <div class="i-icon">🎸</div>
+          <div class="i-title">Music</div>
+          <div class="i-desc">Guitar player and music enthusiast — music is a big part of who I am.</div>
+        </div>
+        <div class="interest-item">
+          <div class="i-icon">🔧</div>
+          <div class="i-title">Tinkering</div>
+          <div class="i-desc">I love figuring out how things work and building things from scratch.</div>
+        </div>
+        <div class="interest-item">
+          <div class="i-icon">✝️</div>
+          <div class="i-title">Faith & Community</div>
+          <div class="i-desc">Active MFC member serving in music ministry and community since 1995.</div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<!-- TRAININGS -->
-<section id="trainings">
-  <div class="section-label">Learning & Development</div>
-  <h2 class="section-title">Trainings</h2>
-  <div class="trainings-list">
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">SGS Philippines</div>
-        <div class="training-date">June 2016</div>
+<!-- EMPLOYMENT — background: animated server/network nodes -->
+<div class="section-block" id="employment">
+  <canvas id="emp-canvas"></canvas>
+  <div class="section-inner">
+    <div class="s-eyebrow">Career</div>
+    <h2 class="s-title"><em>Employment</em></h2>
+    <div class="emp-grid">
+      <div class="emp-card">
+        <div class="emp-year">2019 – Present</div>
+        <div class="emp-co">West Acton Inc</div>
+        <div class="emp-role">Systems Admin Manager · Remote</div>
+        <div class="emp-desc">Infra operations, planning, and management across 20+ servers for a remote environment.</div>
+        <div class="emp-tags"><span class="emp-tag">Cloud</span><span class="emp-tag">Team Lead</span><span class="emp-tag">Budget</span></div>
       </div>
-      <div class="training-title">Project Management</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Center for Leadership & Change, Inc</div>
-        <div class="training-date">March 2013</div>
+      <div class="emp-card">
+        <div class="emp-year">2017 – Present</div>
+        <div class="emp-co">Cyscorpions Inc</div>
+        <div class="emp-role">Systems Admin — Manager 2 · Makati</div>
+        <div class="emp-desc">Architecting cloud services for clients and designing network infrastructure across Manila and Cebu offices.</div>
+        <div class="emp-tags"><span class="emp-tag">Network Design</span><span class="emp-tag">AWS</span><span class="emp-tag">Infra</span></div>
       </div>
-      <div class="training-title">Franklin Covey — 7 Habits of Highly Effective People</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Amazon Web Services</div>
-        <div class="training-date">February 2013</div>
+      <div class="emp-card">
+        <div class="emp-year">2012 – 2017</div>
+        <div class="emp-co">Klab Cyscorpions</div>
+        <div class="emp-role">Systems Admin — Manager 2</div>
+        <div class="emp-desc">Managed infra and dev teams, overseeing 70+ servers, IT procurement, office security, and in-house development.</div>
+        <div class="emp-tags"><span class="emp-tag">Xen</span><span class="emp-tag">VPN</span><span class="emp-tag">VoIP</span><span class="emp-tag">Dev</span></div>
       </div>
-      <div class="training-title">Architecting with Amazon Web Services</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Q-Linux Solutions Inc</div>
-        <div class="training-date">July 2006</div>
+      <div class="emp-card">
+        <div class="emp-year">2006 – 2012</div>
+        <div class="emp-co">Cyscorpions Inc</div>
+        <div class="emp-role">Systems Administrator</div>
+        <div class="emp-desc">Deployed, maintained, and administered servers across internal infrastructure and external hosting environments.</div>
+        <div class="emp-tags"><span class="emp-tag">Linux</span><span class="emp-tag">Networking</span><span class="emp-tag">Servers</span></div>
       </div>
-      <div class="training-title">Q-Linux Lab 202</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Q-Linux Solutions Inc</div>
-        <div class="training-date">May 2006</div>
+      <div class="emp-card">
+        <div class="emp-year">2004 – 2006</div>
+        <div class="emp-co">INQ7.NET</div>
+        <div class="emp-role">IT Specialist · Inquirer & GMA7</div>
+        <div class="emp-desc">24/7 technical support across all departments of a major Philippine news media company.</div>
+        <div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Network</span><span class="emp-tag">Workstations</span></div>
       </div>
-      <div class="training-title">Q-Linux Lab 201</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Q-Linux Solutions Inc</div>
-        <div class="training-date">June 2005</div>
+      <div class="emp-card">
+        <div class="emp-year">2004</div>
+        <div class="emp-co">Export & Industry Bank</div>
+        <div class="emp-role">IT Technical Support · Trainee</div>
+        <div class="emp-desc">Supported IT operations across bank departments and Metro Manila branches as a job trainee.</div>
+        <div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Banking</span></div>
       </div>
-      <div class="training-title">Q-Linux Lab 101</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Mapua IT Center</div>
-        <div class="training-date">December 2003</div>
-      </div>
-      <div class="training-title">Cisco CCNA 4 — WAN Technologies</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Mapua IT Center</div>
-        <div class="training-date">September 2003</div>
-      </div>
-      <div class="training-title">Cisco CCNA 3 — Switching and Intermediate Routing</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Mapua IT Center</div>
-        <div class="training-date">June 2003</div>
-      </div>
-      <div class="training-title">Cisco CCNA 2 — Routers and Routing Basics</div>
-    </div>
-    <div class="training-card">
-      <div class="training-meta">
-        <div class="training-org">Mapua IT Center</div>
-        <div class="training-date">March 2003</div>
-      </div>
-      <div class="training-title">Cisco CCNA 1 — Networking Basics</div>
     </div>
   </div>
-</section>
+</div>
+
+<!-- SKILLS — background: floating code/binary -->
+<div class="section-block" id="skills">
+  <canvas id="skills-canvas"></canvas>
+  <div class="section-inner">
+    <div class="s-eyebrow">Expertise</div>
+    <h2 class="s-title"><em>Skills</em></h2>
+    <div class="skills-layout">
+      <div class="skill-cat">
+        <div class="skill-cat-title">Cloud & Infrastructure</div>
+        <div class="skill-tags">
+          <span class="tag">Cloud Architecture</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Xen Servers</span><span class="tag">NAS</span><span class="tag">Server Hosting</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Networking</div>
+        <div class="skill-tags">
+          <span class="tag">Network Design</span><span class="tag">Firewall</span><span class="tag">VPN</span><span class="tag">VoIP</span><span class="tag">DNS</span><span class="tag">CCNA</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Systems Admin</div>
+        <div class="skill-tags">
+          <span class="tag">Linux (RHEL/Q-Linux)</span><span class="tag">Version Control</span><span class="tag">Corporate Email</span><span class="tag">IT Procurement</span><span class="tag">Documentation</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <div class="skill-cat-title">Leadership & Management</div>
+        <div class="skill-tags">
+          <span class="tag">Team Management</span><span class="tag">Technical Training</span><span class="tag">Budget Forecasting</span><span class="tag">Project Management</span><span class="tag">Agile / Tasking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRAININGS — background: graduation/book particles -->
+<div class="section-block" id="trainings">
+  <canvas id="trainings-canvas"></canvas>
+  <div class="section-inner">
+    <div class="s-eyebrow">Learning & Development</div>
+    <h2 class="s-title"><em>Trainings</em></h2>
+    <div class="trainings-list">
+      <div class="training-item"><div><div class="t-org">SGS Philippines</div><div class="t-date">June 2016</div></div><div class="t-title">Project Management</div></div>
+      <div class="training-item"><div><div class="t-org">Center for Leadership & Change, Inc</div><div class="t-date">March 2013</div></div><div class="t-title">Franklin Covey — 7 Habits of Highly Effective People</div></div>
+      <div class="training-item"><div><div class="t-org">Amazon Web Services</div><div class="t-date">February 2013</div></div><div class="t-title">Architecting with Amazon Web Services</div></div>
+      <div class="training-item"><div><div class="t-org">Q-Linux Solutions Inc</div><div class="t-date">July 2006</div></div><div class="t-title">Q-Linux Lab 202</div></div>
+      <div class="training-item"><div><div class="t-org">Q-Linux Solutions Inc</div><div class="t-date">May 2006</div></div><div class="t-title">Q-Linux Lab 201</div></div>
+      <div class="training-item"><div><div class="t-org">Q-Linux Solutions Inc</div><div class="t-date">June 2005</div></div><div class="t-title">Q-Linux Lab 101</div></div>
+      <div class="training-item"><div><div class="t-org">Mapua IT Center</div><div class="t-date">December 2003</div></div><div class="t-title">Cisco CCNA 4 — WAN Technologies</div></div>
+      <div class="training-item"><div><div class="t-org">Mapua IT Center</div><div class="t-date">September 2003</div></div><div class="t-title">Cisco CCNA 3 — Switching and Intermediate Routing</div></div>
+      <div class="training-item"><div><div class="t-org">Mapua IT Center</div><div class="t-date">June 2003</div></div><div class="t-title">Cisco CCNA 2 — Routers and Routing Basics</div></div>
+      <div class="training-item"><div><div class="t-org">Mapua IT Center</div><div class="t-date">March 2003</div></div><div class="t-title">Cisco CCNA 1 — Networking Basics</div></div>
+    </div>
+  </div>
+</div>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">Get in Touch</div>
-  <h2 class="section-title">Contact Me</h2>
-  <div class="contact-wrap">
-    <div>
-      <p class="contact-desc">Feel free to reach out — whether it's about a project, a collaboration, or just to say hello.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="https://ronald.repolona.com" target="_blank">
-          <span class="contact-link-icon">🌐</span>ronald.repolona.com
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/repolona/" target="_blank">
-          <span class="contact-link-icon">💼</span>linkedin.com/in/repolona
-        </a>
+<div class="section-block" id="contact">
+  <canvas id="contact-canvas"></canvas>
+  <div class="section-inner">
+    <div class="s-eyebrow">Get in Touch</div>
+    <h2 class="s-title">Contact <em>Me</em></h2>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-desc">Feel free to reach out — whether it's about a project, a collaboration, or just to say hello.</p>
+        <div class="contact-links">
+          <a class="c-link" href="https://ronald.repolona.com" target="_blank">
+            <span class="c-link-label">Website</span>ronald.repolona.com
+          </a>
+          <a class="c-link" href="https://www.linkedin.com/in/repolona/" target="_blank">
+            <span class="c-link-label">LinkedIn</span>linkedin.com/in/repolona
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <input type="hidden" name="access_key" value="7cb81803-0b5b-47c5-9517-c43b1f6d5c39"/>
+        <input id="cf-name" type="text" name="name" placeholder="Your Name" required/>
+        <input id="cf-email" type="email" name="email" placeholder="Your Email" required/>
+        <textarea id="cf-msg" name="message" placeholder="Your Message" required></textarea>
+        <div class="form-success" id="form-success">✓ Message sent! I'll get back to you soon.</div>
+        <div class="form-error" id="form-error">Something went wrong. Please try again.</div>
+        <button class="btn btn-fill" id="cf-btn" onclick="submitForm(event)" style="align-self:flex-start;margin-top:.5rem">Send Message</button>
       </div>
     </div>
-    <div class="contact-form">
-      <input type="hidden" name="access_key" value="7cb81803-0b5b-47c5-9517-c43b1f6d5c39"/>
-      <input type="hidden" name="subject" value="New message from your portfolio"/>
-      <input type="hidden" name="from_name" value="Ronald Repolona Portfolio"/>
-      <input id="cf-name" type="text" name="name" placeholder="Your Name" required/>
-      <input id="cf-email" type="email" name="email" placeholder="Your Email" required/>
-      <textarea id="cf-msg" name="message" placeholder="Your Message" required></textarea>
-      <div class="form-success" id="form-success">✓ Message sent! I'll get back to you soon.</div>
-      <div class="form-error" id="form-error">Something went wrong. Please try again.</div>
-      <button class="btn btn-outline" id="cf-btn" onclick="submitForm(event)" style="align-self:flex-start">Send Message</button>
-    </div>
   </div>
-</section>
+</div>
 
 <footer>© Ronald Repolona 2019–2026 · Built with care</footer>
 
 <script>
+/* ── CANVAS BACKGROUNDS ── */
+
+// Hero: slow drifting particles like a starfield / data stream
+(function(){
+  const c=document.getElementById('hero-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function init(){
+    pts=[];
+    for(let i=0;i<90;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,a:Math.random()*.5+.15})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    // subtle gradient
+    const g=ctx.createRadialGradient(W*.6,H*.3,0,W*.6,H*.3,W*.6);
+    g.addColorStop(0,'rgba(160,140,160,0.04)');g.addColorStop(1,'transparent');
+    ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    pts.forEach(p=>{
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(180,165,175,${p.a})`;ctx.fill();
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+    });
+    // draw faint connecting lines
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(180,165,175,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke()}
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// About: floating music notes
+(function(){
+  const c=document.getElementById('about-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,notes=[];
+  const symbols=['♩','♪','♫','♬','𝄞'];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function init(){
+    notes=[];
+    for(let i=0;i<28;i++)notes.push({x:Math.random()*W,y:Math.random()*H,s:symbols[Math.floor(Math.random()*symbols.length)],sz:Math.random()*18+10,vy:-(Math.random()*.4+.1),vx:(Math.random()-.5)*.15,a:Math.random()*.18+.04,rot:Math.random()*Math.PI*2,vr:(Math.random()-.5)*.005})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    notes.forEach(n=>{
+      ctx.save();ctx.translate(n.x,n.y);ctx.rotate(n.rot);
+      ctx.font=`${n.sz}px serif`;ctx.fillStyle=`rgba(165,191,176,${n.a})`;
+      ctx.fillText(n.s,0,0);ctx.restore();
+      n.y+=n.vy;n.x+=n.vx;n.rot+=n.vr;
+      if(n.y<-30)n.y=H+30;if(n.x<-30)n.x=W+30;if(n.x>W+30)n.x=-30;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// Employment: animated network nodes (servers connected)
+(function(){
+  const c=document.getElementById('emp-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,nodes=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function init(){
+    nodes=[];
+    for(let i=0;i<40;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1.5})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<130){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(158,151,184,${.12*(1-d/130)})`;ctx.lineWidth=.6;ctx.stroke()}
+      }
+    }
+    nodes.forEach(n=>{
+      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(158,151,184,.35)';ctx.fill();
+      n.x+=n.vx;n.y+=n.vy;
+      if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// Skills: raining binary / code chars
+(function(){
+  const c=document.getElementById('skills-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,drops=[];
+  const chars='01{}[]<>/\\|;:=+-*&%$#@!?ABCDEFabcdef';
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function init(){
+    drops=[];
+    const cols=Math.floor(W/22);
+    for(let i=0;i<cols;i++)drops.push({x:i*22+Math.random()*10,y:Math.random()*H,speed:Math.random()*.6+.2,char:chars[Math.floor(Math.random()*chars.length)],a:Math.random()*.12+.03,sz:Math.random()*5+9})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    drops.forEach(d=>{
+      if(Math.random()<.02)d.char=chars[Math.floor(Math.random()*chars.length)];
+      ctx.font=`${d.sz}px 'DM Mono',monospace`;
+      ctx.fillStyle=`rgba(165,191,176,${d.a})`;
+      ctx.fillText(d.char,d.x,d.y);
+      d.y+=d.speed;
+      if(d.y>H+20){d.y=-20;d.a=Math.random()*.12+.03}
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// Trainings: floating book / graduation symbols
+(function(){
+  const c=document.getElementById('trainings-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,items=[];
+  const syms=['📖','✏','◈','◉','○','▷','▸','◇','◆','❖'];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
+  function init(){
+    items=[];
+    for(let i=0;i<30;i++)items.push({x:Math.random()*W,y:Math.random()*H,s:syms[Math.floor(Math.random()*syms.length)],sz:Math.random()*12+8,vy:(Math.random()-.5)*.25,vx:(Math.random()-.5)*.15,a:Math.random()*.13+.04})
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    items.forEach(n=>{
+      ctx.font=`${n.sz}px sans-serif`;ctx.fillStyle=`rgba(201,150,142,${n.a})`;
+      ctx.fillText(n.s,n.x,n.y);
+      n.y+=n.vy;n.x+=n.vx;
+      if(n.y<-20)n.y=H+20;if(n.y>H+20)n.y=-20;
+      if(n.x<-20)n.x=W+20;if(n.x>W+20)n.x=-20;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+// Contact: slow soft pulses
+(function(){
+  const c=document.getElementById('contact-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,t=0;
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  function draw(){
+    ctx.clearRect(0,0,W,H);t+=.005;
+    for(let i=0;i<3;i++){
+      const r=(80+i*60)+Math.sin(t+i)*20;
+      const g=ctx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,r+100);
+      g.addColorStop(0,`rgba(201,150,142,${.04+i*.01*Math.sin(t+i)})`);
+      g.addColorStop(1,'transparent');
+      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);resize();draw();
+})();
+
+/* ── FORM SUBMIT ── */
 async function submitForm(e){
   e.preventDefault();
   const btn=document.getElementById('cf-btn');
@@ -442,19 +510,11 @@ async function submitForm(e){
   success.style.display='none';error.style.display='none';
   const key=document.querySelector('[name="access_key"]').value;
   try{
-    const res=await fetch('https://api.web3forms.com/submit',{
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({access_key:key,name,email,message:msg,subject:'New message from your portfolio',from_name:'Ronald Repolona Portfolio'})
-    });
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:key,name,email,message:msg,subject:'New message from portfolio',from_name:'Ronald Repolona Portfolio'})});
     const data=await res.json();
-    if(data.success){
-      success.style.display='block';
-      document.getElementById('cf-name').value='';
-      document.getElementById('cf-email').value='';
-      document.getElementById('cf-msg').value='';
-    } else {error.style.display='block';error.textContent='Something went wrong. Please try again.';}
-  } catch(err){error.style.display='block';error.textContent='Network error. Please try again.';}
+    if(data.success){success.style.display='block';document.getElementById('cf-name').value='';document.getElementById('cf-email').value='';document.getElementById('cf-msg').value='';}
+    else{error.style.display='block';error.textContent='Something went wrong. Please try again.';}
+  }catch(err){error.style.display='block';error.textContent='Network error. Please try again.';}
   btn.disabled=false;btn.textContent='Send Message';
 }
 </script>
