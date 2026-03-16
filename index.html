@@ -95,6 +95,9 @@
   .contact-form input:focus,.contact-form textarea:focus{border-color:var(--lav)}
   .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--muted)}
   .contact-form textarea{height:115px}
+  .form-success{display:none;background:var(--bg2);border:1px solid var(--sage);border-radius:6px;padding:1rem 1.2rem;font-size:.83rem;color:var(--sage);text-align:center}
+  .form-error{display:none;background:var(--bg2);border:1px solid var(--rose);border-radius:6px;padding:1rem 1.2rem;font-size:.83rem;color:var(--rose);text-align:center}
+  .btn:disabled{opacity:.5;cursor:not-allowed}
 
   footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--muted);font-size:.76rem;letter-spacing:.5px}
 
@@ -183,7 +186,7 @@
         <div class="emp-period">2019 – Present</div>
       </div>
       <div class="emp-role">Systems Admin Manager · Remote</div>
-      <div class="emp-desc">IT operations, infrastructure planning, and management across 20+ servers for a remote environment.</div>
+      <div class="emp-desc">Leading IT operations, infrastructure planning, and team management across 20+ servers for a remote-first environment.</div>
       <div class="emp-tags">
         <span class="emp-tag">Cloud</span>
         <span class="emp-tag">Team Lead</span>
@@ -274,8 +277,6 @@
       <div class="skill-tags">
         <span class="tag">Cloud Architecture</span>
         <span class="tag">AWS</span>
-        <span class="tag">Azure</span>
-        <span class="tag">GCP</span>
         <span class="tag">Xen Servers</span>
         <span class="tag">NAS</span>
         <span class="tag">Server Hosting</span>
@@ -289,6 +290,8 @@
         <span class="tag">VPN</span>
         <span class="tag">VoIP</span>
         <span class="tag">DNS</span>
+        <span class="tag">CCTV</span>
+        <span class="tag">Biometrics</span>
         <span class="tag">CCNA</span>
       </div>
     </div>
@@ -410,15 +413,50 @@
       </div>
     </div>
     <div class="contact-form">
-      <input type="text" placeholder="Your Name"/>
-      <input type="email" placeholder="Your Email"/>
-      <textarea placeholder="Your Message"></textarea>
-      <button class="btn btn-outline" style="align-self:flex-start">Send Message</button>
+      <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE"/>
+      <input type="hidden" name="subject" value="New message from your portfolio"/>
+      <input type="hidden" name="from_name" value="Ronald Repolona Portfolio"/>
+      <input id="cf-name" type="text" name="name" placeholder="Your Name" required/>
+      <input id="cf-email" type="email" name="email" placeholder="Your Email" required/>
+      <textarea id="cf-msg" name="message" placeholder="Your Message" required></textarea>
+      <div class="form-success" id="form-success">✓ Message sent! I'll get back to you soon.</div>
+      <div class="form-error" id="form-error">Something went wrong. Please try again.</div>
+      <button class="btn btn-outline" id="cf-btn" onclick="submitForm(event)" style="align-self:flex-start">Send Message</button>
     </div>
   </div>
 </section>
 
 <footer>© Ronald Repolona 2019–2026 · Built with care</footer>
 
+<script>
+async function submitForm(e){
+  e.preventDefault();
+  const btn=document.getElementById('cf-btn');
+  const success=document.getElementById('form-success');
+  const error=document.getElementById('form-error');
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const msg=document.getElementById('cf-msg').value.trim();
+  if(!name||!email||!msg){error.style.display='block';error.textContent='Please fill in all fields.';return;}
+  btn.disabled=true;btn.textContent='Sending...';
+  success.style.display='none';error.style.display='none';
+  const key=document.querySelector('[name="access_key"]').value;
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({access_key:key,name,email,message:msg,subject:'New message from your portfolio',from_name:'Ronald Repolona Portfolio'})
+    });
+    const data=await res.json();
+    if(data.success){
+      success.style.display='block';
+      document.getElementById('cf-name').value='';
+      document.getElementById('cf-email').value='';
+      document.getElementById('cf-msg').value='';
+    } else {error.style.display='block';error.textContent='Something went wrong. Please try again.';}
+  } catch(err){error.style.display='block';error.textContent='Network error. Please try again.';}
+  btn.disabled=false;btn.textContent='Send Message';
+}
+</script>
 </body>
 </html>
