@@ -20,88 +20,102 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;overflow-x:hidden}
 
-/* NAV */
-nav{position:fixed;top:0;width:100%;z-index:200;padding:0 2.5rem;background:rgba(20,20,24,0.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:200;padding:0 2rem;background:rgba(20,20,24,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:58px}
-.nav-logo{font-family:var(--serif);font-size:1.3rem;color:var(--rose);text-decoration:none;letter-spacing:3px}
-.nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:.7rem;font-family:var(--mono);letter-spacing:2px;text-transform:uppercase;transition:color .25s}
+.nav-logo{font-family:var(--serif);font-size:1.2rem;color:var(--rose);text-decoration:none;letter-spacing:3px;flex-shrink:0;white-space:nowrap}
+.nav-links{display:flex;gap:1.6rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.68rem;font-family:var(--mono);letter-spacing:1.5px;text-transform:uppercase;transition:color .25s;white-space:nowrap}
 .nav-links a:hover{color:var(--text)}
 
-/* SECTION WRAPPER */
+/* hamburger */
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.nav-toggle span{display:block;width:22px;height:1.5px;background:var(--muted);transition:all .3s}
+.nav-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-toggle.open span:nth-child(2){opacity:0}
+.nav-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* mobile menu drawer */
+.nav-drawer{display:none;position:fixed;top:58px;left:0;right:0;background:rgba(20,20,24,0.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;z-index:199;flex-direction:column;gap:0}
+.nav-drawer.open{display:flex}
+.nav-drawer a{color:var(--muted);text-decoration:none;font-family:var(--mono);font-size:.75rem;letter-spacing:2px;text-transform:uppercase;padding:.9rem 0;border-bottom:1px solid var(--border);transition:color .25s}
+.nav-drawer a:last-child{border-bottom:none}
+.nav-drawer a:hover{color:var(--text)}
+
+/* ── SECTION WRAPPER ── */
 .section-block{position:relative;overflow:hidden}
-.section-inner{max-width:1100px;margin:0 auto;padding:120px 2.5rem 100px;position:relative;z-index:2}
+.section-inner{max-width:1100px;margin:0 auto;padding:100px 2rem 80px;position:relative;z-index:2}
 .section-block canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55}
 .section-block+.section-block{border-top:1px solid var(--border)}
 
-/* HERO */
-#hero{min-height:100vh;display:flex;align-items:center;padding-top:58px}
-.hero-inner{max-width:1100px;margin:0 auto;padding:0 2.5rem;position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 300px;gap:4rem;align-items:center}
-.hero-eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem}
-.hero-name{font-family:var(--serif);font-size:clamp(5rem,11vw,10rem);line-height:.92;color:#f4f0ec;margin-bottom:1rem;letter-spacing:4px;text-transform:uppercase}
+/* ── HERO ── */
+#hero-block{min-height:100vh;display:flex;align-items:center;padding-top:58px;position:relative;overflow:hidden}
+.hero-inner{max-width:1100px;margin:0 auto;padding:0 2rem;position:relative;z-index:2;width:100%;display:grid;grid-template-columns:1fr 280px;gap:4rem;align-items:center}
+.hero-eyebrow{font-family:var(--mono);font-size:.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:1.2rem}
+.hero-name{font-family:var(--serif);font-size:clamp(4.5rem,10vw,9.5rem);line-height:.92;color:#f4f0ec;margin-bottom:1rem;letter-spacing:4px;text-transform:uppercase}
 .hero-name span{display:block;color:var(--rose)}
-.hero-role{font-family:var(--condensed);font-size:.95rem;font-weight:300;color:var(--lav);letter-spacing:4px;text-transform:uppercase;margin-bottom:1.8rem}
-.hero-desc{color:var(--muted);font-size:.95rem;line-height:2;max-width:460px;margin-bottom:2.5rem;font-weight:300}
-.hero-cta{display:flex;gap:1.2rem;flex-wrap:wrap}
-.btn{padding:.75rem 2rem;border-radius:2px;font-size:.7rem;font-family:var(--condensed);letter-spacing:3px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .25s;cursor:pointer;border:none}
+.hero-role{font-family:var(--condensed);font-size:.9rem;font-weight:300;color:var(--lav);letter-spacing:3px;text-transform:uppercase;margin-bottom:1.6rem}
+.hero-desc{color:var(--muted);font-size:.92rem;line-height:2;max-width:460px;margin-bottom:2.2rem;font-weight:300}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{padding:.72rem 1.8rem;border-radius:2px;font-size:.68rem;font-family:var(--condensed);letter-spacing:2.5px;text-transform:uppercase;font-weight:500;text-decoration:none;transition:all .25s;cursor:pointer;border:none}
 .btn-fill{background:var(--rose);color:var(--bg);border:1px solid var(--rose)}
 .btn-fill:hover{background:transparent;color:var(--rose)}
 .btn-ghost{border:1px solid var(--border);color:var(--muted);background:transparent}
 .btn-ghost:hover{border-color:var(--gray);color:var(--text)}
-.hero-photo{width:260px;height:320px;object-fit:cover;border-radius:4px;filter:grayscale(20%);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.hero-photo{width:100%;height:340px;object-fit:cover;object-position:top;border-radius:4px;filter:grayscale(20%);border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.5)}
 
-/* SECTION LABELS */
-.s-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:.6rem}
-.s-title{font-family:var(--serif);font-size:clamp(4rem,8vw,7.5rem);line-height:.92;color:#f4f0ec;margin-bottom:3rem;letter-spacing:4px;text-transform:uppercase}
+/* ── SECTION LABELS ── */
+.s-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--sage);margin-bottom:.6rem}
+.s-title{font-family:var(--serif);font-size:clamp(3rem,7vw,7rem);line-height:.92;color:#f4f0ec;margin-bottom:2.5rem;letter-spacing:4px;text-transform:uppercase}
 .s-title em{color:var(--rose);font-style:normal}
 
-/* ABOUT */
+/* ── ABOUT ── */
 .about-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:5rem;align-items:start}
-.about-bio p{font-size:1rem;line-height:2;color:var(--text);margin-bottom:1.2rem;font-weight:300}
+.about-bio p{font-size:.95rem;line-height:2;color:var(--text);margin-bottom:1.2rem;font-weight:300}
 .about-bio p:last-child{margin-bottom:0}
 .about-bio strong{font-weight:600;color:#f4f0ec}
-.interest-list{display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem}
+.interest-list{display:flex;flex-direction:column;gap:.75rem}
 .interest-item{border:1px solid var(--border);border-radius:4px;padding:1.2rem 1.4rem;background:rgba(28,28,34,.6);backdrop-filter:blur(8px);transition:border-color .25s}
 .interest-item:hover{border-color:var(--lav)}
 .i-icon{font-size:1.2rem;margin-bottom:.4rem}
-.i-title{font-size:.82rem;font-weight:600;color:#f4f0ec;margin-bottom:.2rem;letter-spacing:.2px}
+.i-title{font-size:.82rem;font-weight:600;color:#f4f0ec;margin-bottom:.2rem}
 .i-desc{font-size:.78rem;color:var(--muted);line-height:1.7;font-weight:300}
 
-/* EMPLOYMENT */
+/* ── EMPLOYMENT ── */
 .emp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
 .emp-card{border:1px solid var(--border);border-radius:4px;padding:1.8rem;background:rgba(28,28,34,.55);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:.5rem;transition:border-color .25s,transform .2s}
 .emp-card:hover{border-color:var(--rose);transform:translateY(-3px)}
-.emp-year{font-family:var(--mono);font-size:.62rem;color:var(--sage);letter-spacing:1.5px;margin-bottom:.3rem}
-.emp-co{font-family:var(--serif);font-size:1.4rem;font-style:italic;color:#f4f0ec;line-height:1.1;margin-bottom:.3rem}
-.emp-role{font-family:var(--mono);font-size:.68rem;color:var(--lav);letter-spacing:.8px;margin-bottom:.5rem}
+.emp-year{font-family:var(--mono);font-size:.6rem;color:var(--sage);letter-spacing:1.5px;margin-bottom:.2rem}
+.emp-co{font-family:var(--serif);font-size:1.6rem;color:#f4f0ec;line-height:1;margin-bottom:.3rem;letter-spacing:2px}
+.emp-role{font-family:var(--condensed);font-size:.7rem;font-weight:300;color:var(--lav);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:.4rem}
 .emp-desc{font-size:.82rem;color:var(--muted);line-height:1.75;font-weight:300;flex:1}
-.emp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
-.emp-tag{font-size:.62rem;font-family:var(--mono);padding:.18rem .55rem;border-radius:2px;background:var(--bg3);border:1px solid var(--border);color:var(--gray);letter-spacing:.5px}
+.emp-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.emp-tag{font-size:.6rem;font-family:var(--mono);padding:.17rem .52rem;border-radius:2px;background:var(--bg3);border:1px solid var(--border);color:var(--gray);letter-spacing:.5px}
 
-/* SKILLS */
+/* ── SKILLS ── */
 .skills-layout{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
 .skill-cat{border:1px solid var(--border);border-radius:4px;padding:2rem;background:rgba(28,28,34,.55);backdrop-filter:blur(8px)}
-.skill-cat-title{font-family:var(--serif);font-size:1.3rem;font-style:italic;color:#f4f0ec;margin-bottom:1.2rem}
+.skill-cat-title{font-family:var(--serif);font-size:2rem;color:#f4f0ec;margin-bottom:1.1rem;letter-spacing:3px}
 .skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
 .tag{background:var(--bg3);color:var(--text);font-size:.75rem;font-weight:500;padding:.3rem .8rem;border-radius:2px;border:1px solid var(--border)}
 
-/* TRAININGS */
-.trainings-list{display:flex;flex-direction:column;gap:0}
-.training-item{display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:center;padding:1.4rem 0;border-bottom:1px solid var(--border);transition:background .2s}
+/* ── TRAININGS ── */
+.trainings-list{display:flex;flex-direction:column}
+.training-item{display:grid;grid-template-columns:200px 1fr;gap:2rem;align-items:center;padding:1.4rem 0;border-bottom:1px solid var(--border);transition:color .2s}
 .training-item:first-child{border-top:1px solid var(--border)}
 .training-item:hover .t-title{color:var(--rose)}
 .t-org{font-size:.78rem;font-weight:600;color:var(--sage);margin-bottom:.2rem}
-.t-date{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:1px}
-.t-title{font-family:var(--serif);font-size:1.15rem;font-style:italic;color:#f4f0ec;transition:color .25s}
+.t-date{font-family:var(--mono);font-size:.63rem;color:var(--muted);letter-spacing:1px}
+.t-title{font-family:var(--serif);font-size:1.5rem;color:#f4f0ec;transition:color .25s;letter-spacing:2px}
 
-/* CONTACT */
+/* ── CONTACT ── */
 .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
-.contact-desc{font-size:1rem;color:var(--muted);line-height:2;margin-bottom:2rem;font-weight:300}
+.contact-desc{font-size:.95rem;color:var(--muted);line-height:2;margin-bottom:2rem;font-weight:300}
 .contact-links{display:flex;flex-direction:column;gap:.8rem}
 .c-link{display:flex;align-items:center;gap:.8rem;color:var(--text);text-decoration:none;font-size:.85rem;transition:color .25s;padding:.4rem 0;border-bottom:1px solid var(--border)}
 .c-link:last-child{border-bottom:none}
 .c-link:hover{color:var(--rose)}
-.c-link-label{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;width:70px;flex-shrink:0}
+.c-link-label{font-family:var(--mono);font-size:.63rem;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;width:70px;flex-shrink:0}
 .contact-form{display:flex;flex-direction:column;gap:.8rem}
 .contact-form input,.contact-form textarea{background:transparent;border:none;border-bottom:1px solid var(--border);padding:.75rem 0;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .25s;resize:none;width:100%}
 .contact-form input:focus,.contact-form textarea:focus{border-color:var(--rose)}
@@ -111,19 +125,43 @@ nav{position:fixed;top:0;width:100%;z-index:200;padding:0 2.5rem;background:rgba
 .form-error{display:none;border:1px solid var(--rose);border-radius:3px;padding:.9rem 1.1rem;font-size:.82rem;color:var(--rose);margin-top:.4rem}
 .btn:disabled{opacity:.45;cursor:not-allowed}
 
-footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color:var(--muted);font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px}
+footer{border-top:1px solid var(--border);text-align:center;padding:2rem;color:var(--muted);font-family:var(--mono);font-size:.65rem;letter-spacing:1.5px}
 
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
   .emp-grid{grid-template-columns:1fr 1fr}
   .skills-layout{grid-template-columns:1fr}
   .about-layout,.contact-layout{grid-template-columns:1fr;gap:3rem}
 }
-@media(max-width:640px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-photo{display:none}
+
+@media(max-width:700px){
+  /* show hamburger, hide desktop links */
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+
+  #hero-block{min-height:auto;padding-top:58px;padding-bottom:60px}
+  .hero-inner{grid-template-columns:1fr;gap:2.5rem;padding:4rem 1.5rem 0}
+  .hero-photo{height:260px;width:100%;max-width:280px}
+  .hero-name{font-size:clamp(3.8rem,16vw,6rem);letter-spacing:2px}
+  .hero-role{font-size:.8rem;letter-spacing:2px}
+  .hero-desc{font-size:.88rem}
+
+  .section-inner{padding:70px 1.5rem 60px}
+  .s-title{font-size:clamp(2.6rem,12vw,4.5rem);letter-spacing:2px;margin-bottom:2rem}
+
   .emp-grid{grid-template-columns:1fr}
-  .training-item{grid-template-columns:1fr;gap:.5rem}
-  .nav-links{gap:1.2rem}
+  .skills-layout{grid-template-columns:1fr}
+
+  .training-item{grid-template-columns:1fr;gap:.4rem;padding:1.2rem 0}
+  .t-title{font-size:1.1rem}
+
+  .contact-layout{grid-template-columns:1fr;gap:2.5rem}
+}
+
+@media(max-width:400px){
+  .hero-name{font-size:3.4rem}
+  nav{padding:0 1.2rem}
+  .section-inner{padding:60px 1.2rem 50px}
 }
 </style>
 </head>
@@ -131,7 +169,7 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
 
 <nav>
   <div class="nav-inner">
-    <a class="nav-logo" href="#hero">Ronald Repolona</a>
+    <a class="nav-logo" href="#hero-block">RR</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#employment">Work</a></li>
@@ -139,11 +177,23 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
       <li><a href="#trainings">Trainings</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<!-- Mobile drawer -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#employment" onclick="closeMenu()">Work</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#trainings" onclick="closeMenu()">Trainings</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
 <!-- HERO -->
-<div class="section-block" id="hero-block" style="min-height:100vh;display:flex;align-items:center;padding-top:58px;position:relative;overflow:hidden">
+<div class="section-block" id="hero-block">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div>
@@ -160,7 +210,7 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
   </div>
 </div>
 
-<!-- ABOUT — background: floating musical notes / person silhouette -->
+<!-- ABOUT -->
 <div class="section-block" id="about">
   <canvas id="about-canvas"></canvas>
   <div class="section-inner">
@@ -173,115 +223,47 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
         <p>I'm a proud member of <strong>Missionary Families of Christ</strong> since 1995 — serving in the Music Ministry, as YFC Servant, and as Servant Coordinator for Singles.</p>
       </div>
       <div class="interest-list">
-        <div class="interest-item">
-          <div class="i-icon">🎸</div>
-          <div class="i-title">Music</div>
-          <div class="i-desc">Guitar player and music enthusiast — music is a big part of who I am.</div>
-        </div>
-        <div class="interest-item">
-          <div class="i-icon">🔧</div>
-          <div class="i-title">Tinkering</div>
-          <div class="i-desc">I love figuring out how things work and building things from scratch.</div>
-        </div>
-        <div class="interest-item">
-          <div class="i-icon">✝️</div>
-          <div class="i-title">Faith & Community</div>
-          <div class="i-desc">Active MFC member serving in music ministry and community since 1995.</div>
-        </div>
+        <div class="interest-item"><div class="i-icon">🎸</div><div class="i-title">Music</div><div class="i-desc">Guitar player and music enthusiast — music is a big part of who I am.</div></div>
+        <div class="interest-item"><div class="i-icon">🔧</div><div class="i-title">Tinkering</div><div class="i-desc">I love figuring out how things work and building things from scratch.</div></div>
+        <div class="interest-item"><div class="i-icon">✝️</div><div class="i-title">Faith & Community</div><div class="i-desc">Active MFC member serving in music ministry and community since 1995.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EMPLOYMENT — background: animated server/network nodes -->
+<!-- EMPLOYMENT -->
 <div class="section-block" id="employment">
   <canvas id="emp-canvas"></canvas>
   <div class="section-inner">
     <div class="s-eyebrow">Career</div>
     <h2 class="s-title"><em>Employment</em></h2>
     <div class="emp-grid">
-      <div class="emp-card">
-        <div class="emp-year">2019 – Present</div>
-        <div class="emp-co">West Acton Inc</div>
-        <div class="emp-role">Systems Admin Manager · Remote</div>
-        <div class="emp-desc">Infra operations, planning, and management across 20+ servers for a remote environment.</div>
-        <div class="emp-tags"><span class="emp-tag">Cloud</span><span class="emp-tag">Team Lead</span><span class="emp-tag">Budget</span></div>
-      </div>
-      <div class="emp-card">
-        <div class="emp-year">2017 – Present</div>
-        <div class="emp-co">Cyscorpions Inc</div>
-        <div class="emp-role">Systems Admin — Manager 2 · Makati</div>
-        <div class="emp-desc">Architecting cloud services for clients and designing network infrastructure across Manila and Cebu offices.</div>
-        <div class="emp-tags"><span class="emp-tag">Network Design</span><span class="emp-tag">AWS</span><span class="emp-tag">Infra</span></div>
-      </div>
-      <div class="emp-card">
-        <div class="emp-year">2012 – 2017</div>
-        <div class="emp-co">Klab Cyscorpions</div>
-        <div class="emp-role">Systems Admin — Manager 2</div>
-        <div class="emp-desc">Managed infra and dev teams, overseeing 70+ servers, IT procurement, office security, and in-house development.</div>
-        <div class="emp-tags"><span class="emp-tag">Xen</span><span class="emp-tag">VPN</span><span class="emp-tag">VoIP</span><span class="emp-tag">Dev</span></div>
-      </div>
-      <div class="emp-card">
-        <div class="emp-year">2006 – 2012</div>
-        <div class="emp-co">Cyscorpions Inc</div>
-        <div class="emp-role">Systems Administrator</div>
-        <div class="emp-desc">Deployed, maintained, and administered servers across internal infrastructure and external hosting environments.</div>
-        <div class="emp-tags"><span class="emp-tag">Linux</span><span class="emp-tag">Networking</span><span class="emp-tag">Servers</span></div>
-      </div>
-      <div class="emp-card">
-        <div class="emp-year">2004 – 2006</div>
-        <div class="emp-co">INQ7.NET</div>
-        <div class="emp-role">IT Specialist · Inquirer & GMA7</div>
-        <div class="emp-desc">24/7 technical support across all departments of a major Philippine news media company.</div>
-        <div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Network</span><span class="emp-tag">Workstations</span></div>
-      </div>
-      <div class="emp-card">
-        <div class="emp-year">2004</div>
-        <div class="emp-co">Export & Industry Bank</div>
-        <div class="emp-role">IT Technical Support · Trainee</div>
-        <div class="emp-desc">Supported IT operations across bank departments and Metro Manila branches as a job trainee.</div>
-        <div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Banking</span></div>
-      </div>
+      <div class="emp-card"><div class="emp-year">2019 – Present</div><div class="emp-co">West Acton Inc</div><div class="emp-role">Systems Admin Manager · Remote</div><div class="emp-desc">Infra operations, planning, and management across 20+ servers for a remote environment.</div><div class="emp-tags"><span class="emp-tag">Cloud</span><span class="emp-tag">Team Lead</span><span class="emp-tag">Budget</span></div></div>
+      <div class="emp-card"><div class="emp-year">2017 – Present</div><div class="emp-co">Cyscorpions Inc</div><div class="emp-role">Systems Admin — Manager 2 · Makati</div><div class="emp-desc">Architecting cloud services for clients and designing network infrastructure across Manila and Cebu offices.</div><div class="emp-tags"><span class="emp-tag">Network Design</span><span class="emp-tag">AWS</span><span class="emp-tag">Infra</span></div></div>
+      <div class="emp-card"><div class="emp-year">2012 – 2017</div><div class="emp-co">Klab Cyscorpions</div><div class="emp-role">Systems Admin — Manager 2</div><div class="emp-desc">Managed infra and dev teams, overseeing 70+ servers, IT procurement, office security, and in-house development.</div><div class="emp-tags"><span class="emp-tag">Xen</span><span class="emp-tag">VPN</span><span class="emp-tag">VoIP</span><span class="emp-tag">Dev</span></div></div>
+      <div class="emp-card"><div class="emp-year">2006 – 2012</div><div class="emp-co">Cyscorpions Inc</div><div class="emp-role">Systems Administrator</div><div class="emp-desc">Deployed, maintained, and administered servers across internal and external hosting environments.</div><div class="emp-tags"><span class="emp-tag">Linux</span><span class="emp-tag">Networking</span><span class="emp-tag">Servers</span></div></div>
+      <div class="emp-card"><div class="emp-year">2004 – 2006</div><div class="emp-co">INQ7.NET</div><div class="emp-role">IT Specialist · Inquirer & GMA7</div><div class="emp-desc">24/7 technical support across all departments of a major Philippine news media company.</div><div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Network</span><span class="emp-tag">Workstations</span></div></div>
+      <div class="emp-card"><div class="emp-year">2004</div><div class="emp-co">Export & Industry Bank</div><div class="emp-role">IT Technical Support · Trainee</div><div class="emp-desc">Supported IT operations across bank departments and Metro Manila branches.</div><div class="emp-tags"><span class="emp-tag">Support</span><span class="emp-tag">Banking</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- SKILLS — background: floating code/binary -->
+<!-- SKILLS -->
 <div class="section-block" id="skills">
   <canvas id="skills-canvas"></canvas>
   <div class="section-inner">
     <div class="s-eyebrow">Expertise</div>
     <h2 class="s-title"><em>Skills</em></h2>
     <div class="skills-layout">
-      <div class="skill-cat">
-        <div class="skill-cat-title">Cloud & Infrastructure</div>
-        <div class="skill-tags">
-          <span class="tag">Cloud Architecture</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Xen Servers</span><span class="tag">NAS</span><span class="tag">Server Hosting</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">Networking</div>
-        <div class="skill-tags">
-          <span class="tag">Network Design</span><span class="tag">Firewall</span><span class="tag">VPN</span><span class="tag">VoIP</span><span class="tag">DNS</span><span class="tag">CCNA</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">Systems Admin</div>
-        <div class="skill-tags">
-          <span class="tag">Linux (RHEL/Q-Linux)</span><span class="tag">Version Control</span><span class="tag">Corporate Email</span><span class="tag">IT Procurement</span><span class="tag">Documentation</span>
-        </div>
-      </div>
-      <div class="skill-cat">
-        <div class="skill-cat-title">Leadership & Management</div>
-        <div class="skill-tags">
-          <span class="tag">Team Management</span><span class="tag">Technical Training</span><span class="tag">Budget Forecasting</span><span class="tag">Project Management</span><span class="tag">Agile / Tasking</span>
-        </div>
-      </div>
+      <div class="skill-cat"><div class="skill-cat-title">Cloud & Infrastructure</div><div class="skill-tags"><span class="tag">Cloud Architecture</span><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">GCP</span><span class="tag">Xen Servers</span><span class="tag">NAS</span><span class="tag">Server Hosting</span></div></div>
+      <div class="skill-cat"><div class="skill-cat-title">Networking</div><div class="skill-tags"><span class="tag">Network Design</span><span class="tag">Firewall</span><span class="tag">VPN</span><span class="tag">VoIP</span><span class="tag">DNS</span><span class="tag">CCNA</span></div></div>
+      <div class="skill-cat"><div class="skill-cat-title">Systems Admin</div><div class="skill-tags"><span class="tag">Linux (RHEL/Q-Linux)</span><span class="tag">Version Control</span><span class="tag">Corporate Email</span><span class="tag">IT Procurement</span><span class="tag">Documentation</span></div></div>
+      <div class="skill-cat"><div class="skill-cat-title">Leadership & Management</div><div class="skill-tags"><span class="tag">Team Management</span><span class="tag">Technical Training</span><span class="tag">Budget Forecasting</span><span class="tag">Project Management</span><span class="tag">Agile / Tasking</span></div></div>
     </div>
   </div>
 </div>
 
-<!-- TRAININGS — background: graduation/book particles -->
+<!-- TRAININGS -->
 <div class="section-block" id="trainings">
   <canvas id="trainings-canvas"></canvas>
   <div class="section-inner">
@@ -312,12 +294,8 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
       <div>
         <p class="contact-desc">Feel free to reach out — whether it's about a project, a collaboration, or just to say hello.</p>
         <div class="contact-links">
-          <a class="c-link" href="https://ronald.repolona.com" target="_blank">
-            <span class="c-link-label">Website</span>ronald.repolona.com
-          </a>
-          <a class="c-link" href="https://www.linkedin.com/in/repolona/" target="_blank">
-            <span class="c-link-label">LinkedIn</span>linkedin.com/in/repolona
-          </a>
+          <a class="c-link" href="https://ronald.repolona.com" target="_blank"><span class="c-link-label">Website</span>ronald.repolona.com</a>
+          <a class="c-link" href="https://www.linkedin.com/in/repolona/" target="_blank"><span class="c-link-label">LinkedIn</span>linkedin.com/in/repolona</a>
         </div>
       </div>
       <div class="contact-form">
@@ -336,178 +314,87 @@ footer{border-top:1px solid var(--border);text-align:center;padding:2.5rem;color
 <footer>© Ronald Repolona 2019–2026 · Built with care</footer>
 
 <script>
-/* ── CANVAS BACKGROUNDS ── */
+/* ── MOBILE NAV ── */
+const toggle=document.getElementById('nav-toggle');
+const drawer=document.getElementById('nav-drawer');
+toggle.addEventListener('click',()=>{
+  const open=drawer.classList.toggle('open');
+  toggle.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+});
+function closeMenu(){
+  drawer.classList.remove('open');
+  toggle.classList.remove('open');
+  document.body.style.overflow='';
+}
 
-// Hero: slow drifting particles like a starfield / data stream
+/* ── CANVAS BACKGROUNDS ── */
 (function(){
-  const c=document.getElementById('hero-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('hero-canvas'),ctx=c.getContext('2d');
   let W,H,pts=[];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
-  function init(){
-    pts=[];
-    for(let i=0;i<90;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,a:Math.random()*.5+.15})
-  }
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;pts=[];for(let i=0;i<90;i++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,a:Math.random()*.5+.15})}
   function draw(){
     ctx.clearRect(0,0,W,H);
-    // subtle gradient
     const g=ctx.createRadialGradient(W*.6,H*.3,0,W*.6,H*.3,W*.6);
     g.addColorStop(0,'rgba(160,140,160,0.04)');g.addColorStop(1,'transparent');
     ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    pts.forEach(p=>{
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(180,165,175,${p.a})`;ctx.fill();
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-    });
-    // draw faint connecting lines
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(180,165,175,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke()}
-    }
+    pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(180,165,175,${p.a})`;ctx.fill();p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;});
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(180,165,175,${.06*(1-d/100)})`;ctx.lineWidth=.5;ctx.stroke()}}
     requestAnimationFrame(draw);
   }
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-// About: floating music notes
 (function(){
-  const c=document.getElementById('about-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('about-canvas'),ctx=c.getContext('2d');
   let W,H,notes=[];
-  const symbols=['♩','♪','♫','♬','𝄞'];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
-  function init(){
-    notes=[];
-    for(let i=0;i<28;i++)notes.push({x:Math.random()*W,y:Math.random()*H,s:symbols[Math.floor(Math.random()*symbols.length)],sz:Math.random()*18+10,vy:-(Math.random()*.4+.1),vx:(Math.random()-.5)*.15,a:Math.random()*.18+.04,rot:Math.random()*Math.PI*2,vr:(Math.random()-.5)*.005})
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    notes.forEach(n=>{
-      ctx.save();ctx.translate(n.x,n.y);ctx.rotate(n.rot);
-      ctx.font=`${n.sz}px serif`;ctx.fillStyle=`rgba(165,191,176,${n.a})`;
-      ctx.fillText(n.s,0,0);ctx.restore();
-      n.y+=n.vy;n.x+=n.vx;n.rot+=n.vr;
-      if(n.y<-30)n.y=H+30;if(n.x<-30)n.x=W+30;if(n.x>W+30)n.x=-30;
-    });
-    requestAnimationFrame(draw);
-  }
+  const sym=['♩','♪','♫','♬','𝄞'];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;notes=[];for(let i=0;i<28;i++)notes.push({x:Math.random()*W,y:Math.random()*H,s:sym[Math.floor(Math.random()*sym.length)],sz:Math.random()*18+10,vy:-(Math.random()*.4+.1),vx:(Math.random()-.5)*.15,a:Math.random()*.18+.04,rot:Math.random()*Math.PI*2,vr:(Math.random()-.5)*.005})}
+  function draw(){ctx.clearRect(0,0,W,H);notes.forEach(n=>{ctx.save();ctx.translate(n.x,n.y);ctx.rotate(n.rot);ctx.font=`${n.sz}px serif`;ctx.fillStyle=`rgba(165,191,176,${n.a})`;ctx.fillText(n.s,0,0);ctx.restore();n.y+=n.vy;n.x+=n.vx;n.rot+=n.vr;if(n.y<-30)n.y=H+30;if(n.x<-30)n.x=W+30;if(n.x>W+30)n.x=-30;});requestAnimationFrame(draw);}
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-// Employment: animated network nodes (servers connected)
 (function(){
-  const c=document.getElementById('emp-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('emp-canvas'),ctx=c.getContext('2d');
   let W,H,nodes=[];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
-  function init(){
-    nodes=[];
-    for(let i=0;i<40;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1.5})
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    for(let i=0;i<nodes.length;i++){
-      for(let j=i+1;j<nodes.length;j++){
-        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<130){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(158,151,184,${.12*(1-d/130)})`;ctx.lineWidth=.6;ctx.stroke()}
-      }
-    }
-    nodes.forEach(n=>{
-      ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(158,151,184,.35)';ctx.fill();
-      n.x+=n.vx;n.y+=n.vy;
-      if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;
-    });
-    requestAnimationFrame(draw);
-  }
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;nodes=[];for(let i=0;i<40;i++)nodes.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,r:Math.random()*2+1.5})}
+  function draw(){ctx.clearRect(0,0,W,H);for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<130){ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.strokeStyle=`rgba(158,151,184,${.12*(1-d/130)})`;ctx.lineWidth=.6;ctx.stroke()}}nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,n.r,0,Math.PI*2);ctx.fillStyle='rgba(158,151,184,.35)';ctx.fill();n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>W)n.vx*=-1;if(n.y<0||n.y>H)n.vy*=-1;});requestAnimationFrame(draw);}
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-// Skills: raining binary / code chars
 (function(){
-  const c=document.getElementById('skills-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('skills-canvas'),ctx=c.getContext('2d');
   let W,H,drops=[];
   const chars='01{}[]<>/\\|;:=+-*&%$#@!?ABCDEFabcdef';
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
-  function init(){
-    drops=[];
-    const cols=Math.floor(W/22);
-    for(let i=0;i<cols;i++)drops.push({x:i*22+Math.random()*10,y:Math.random()*H,speed:Math.random()*.6+.2,char:chars[Math.floor(Math.random()*chars.length)],a:Math.random()*.12+.03,sz:Math.random()*5+9})
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    drops.forEach(d=>{
-      if(Math.random()<.02)d.char=chars[Math.floor(Math.random()*chars.length)];
-      ctx.font=`${d.sz}px 'DM Mono',monospace`;
-      ctx.fillStyle=`rgba(165,191,176,${d.a})`;
-      ctx.fillText(d.char,d.x,d.y);
-      d.y+=d.speed;
-      if(d.y>H+20){d.y=-20;d.a=Math.random()*.12+.03}
-    });
-    requestAnimationFrame(draw);
-  }
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;drops=[];const cols=Math.floor(W/22);for(let i=0;i<cols;i++)drops.push({x:i*22+Math.random()*10,y:Math.random()*H,speed:Math.random()*.6+.2,char:chars[Math.floor(Math.random()*chars.length)],a:Math.random()*.12+.03,sz:Math.random()*5+9})}
+  function draw(){ctx.clearRect(0,0,W,H);drops.forEach(d=>{if(Math.random()<.02)d.char=chars[Math.floor(Math.random()*chars.length)];ctx.font=`${d.sz}px 'DM Mono',monospace`;ctx.fillStyle=`rgba(165,191,176,${d.a})`;ctx.fillText(d.char,d.x,d.y);d.y+=d.speed;if(d.y>H+20){d.y=-20;d.a=Math.random()*.12+.03}});requestAnimationFrame(draw);}
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-// Trainings: floating book / graduation symbols
 (function(){
-  const c=document.getElementById('trainings-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('trainings-canvas'),ctx=c.getContext('2d');
   let W,H,items=[];
   const syms=['📖','✏','◈','◉','○','▷','▸','◇','◆','❖'];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;init()}
-  function init(){
-    items=[];
-    for(let i=0;i<30;i++)items.push({x:Math.random()*W,y:Math.random()*H,s:syms[Math.floor(Math.random()*syms.length)],sz:Math.random()*12+8,vy:(Math.random()-.5)*.25,vx:(Math.random()-.5)*.15,a:Math.random()*.13+.04})
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    items.forEach(n=>{
-      ctx.font=`${n.sz}px sans-serif`;ctx.fillStyle=`rgba(201,150,142,${n.a})`;
-      ctx.fillText(n.s,n.x,n.y);
-      n.y+=n.vy;n.x+=n.vx;
-      if(n.y<-20)n.y=H+20;if(n.y>H+20)n.y=-20;
-      if(n.x<-20)n.x=W+20;if(n.x>W+20)n.x=-20;
-    });
-    requestAnimationFrame(draw);
-  }
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;items=[];for(let i=0;i<30;i++)items.push({x:Math.random()*W,y:Math.random()*H,s:syms[Math.floor(Math.random()*syms.length)],sz:Math.random()*12+8,vy:(Math.random()-.5)*.25,vx:(Math.random()-.5)*.15,a:Math.random()*.13+.04})}
+  function draw(){ctx.clearRect(0,0,W,H);items.forEach(n=>{ctx.font=`${n.sz}px sans-serif`;ctx.fillStyle=`rgba(201,150,142,${n.a})`;ctx.fillText(n.s,n.x,n.y);n.y+=n.vy;n.x+=n.vx;if(n.y<-20)n.y=H+20;if(n.y>H+20)n.y=-20;if(n.x<-20)n.x=W+20;if(n.x>W+20)n.x=-20;});requestAnimationFrame(draw);}
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-// Contact: slow soft pulses
 (function(){
-  const c=document.getElementById('contact-canvas');
-  const ctx=c.getContext('2d');
+  const c=document.getElementById('contact-canvas'),ctx=c.getContext('2d');
   let W,H,t=0;
   function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
-  function draw(){
-    ctx.clearRect(0,0,W,H);t+=.005;
-    for(let i=0;i<3;i++){
-      const r=(80+i*60)+Math.sin(t+i)*20;
-      const g=ctx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,r+100);
-      g.addColorStop(0,`rgba(201,150,142,${.04+i*.01*Math.sin(t+i)})`);
-      g.addColorStop(1,'transparent');
-      ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-    }
-    requestAnimationFrame(draw);
-  }
+  function draw(){ctx.clearRect(0,0,W,H);t+=.005;for(let i=0;i<3;i++){const r=(80+i*60)+Math.sin(t+i)*20;const g=ctx.createRadialGradient(W*.5,H*.5,0,W*.5,H*.5,r+100);g.addColorStop(0,`rgba(201,150,142,${.04+i*.01*Math.sin(t+i)})`);g.addColorStop(1,'transparent');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}requestAnimationFrame(draw);}
   window.addEventListener('resize',resize);resize();draw();
 })();
 
-/* ── FORM SUBMIT ── */
+/* ── FORM ── */
 async function submitForm(e){
   e.preventDefault();
-  const btn=document.getElementById('cf-btn');
-  const success=document.getElementById('form-success');
-  const error=document.getElementById('form-error');
-  const name=document.getElementById('cf-name').value.trim();
-  const email=document.getElementById('cf-email').value.trim();
-  const msg=document.getElementById('cf-msg').value.trim();
+  const btn=document.getElementById('cf-btn'),success=document.getElementById('form-success'),error=document.getElementById('form-error');
+  const name=document.getElementById('cf-name').value.trim(),email=document.getElementById('cf-email').value.trim(),msg=document.getElementById('cf-msg').value.trim();
   if(!name||!email||!msg){error.style.display='block';error.textContent='Please fill in all fields.';return;}
-  btn.disabled=true;btn.textContent='Sending...';
-  success.style.display='none';error.style.display='none';
+  btn.disabled=true;btn.textContent='Sending...';success.style.display='none';error.style.display='none';
   const key=document.querySelector('[name="access_key"]').value;
   try{
     const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:key,name,email,message:msg,subject:'New message from portfolio',from_name:'Ronald Repolona Portfolio'})});
